@@ -67,7 +67,7 @@ def snakeSneak():
         print('You successfully sneak away from the snake and continue heading down the path into the unknown.')
         goStraight()
 #RIGHT SIDE + OPTIONS
-        
+#change
 def goRight():
     print('You head forward and hike for 1 hour. The mist dissapates and you arrive at a large ominous cave')
     caveChoice = input('Do you go in, climb to see where you are(climb), or keep walking? ')
