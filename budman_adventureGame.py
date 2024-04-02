@@ -8,7 +8,6 @@ def start():
     print('--------------------')
     pickSide()
 def pickSide(): 
-  
     #draw a sign in turlte
     sideChoice = input('There is an old, cracked wooden sign. You try to read where the signs point to, but it is in a different language. Do you go left, right, or forward? ')
     if (sideChoice.lower() == 'left'):
@@ -20,6 +19,8 @@ def pickSide():
     elif(sideChoice.lower() == 'forward'):
        print('--------------------')
        goForward()
+
+##LEFT SIDE + OPTIONS
 def goLeft():
     print('You walk down the left path, There are many vines and roots covering the path.')
     snakeChoice = input('Suddenly, you see a large vine ahead of, but it is moving, and coming fast towards you. It is a King Cobra around 10 feet tall whose poison could kill you in a matter of minutes. Do you fight, sneak, or run? ')
@@ -65,6 +66,7 @@ def snakeSneak():
         print('--------------------')
         print('You successfully sneak away from the snake and continue heading down the path into the unknown.')
         goStraight()
+#RIGHT SIDE + OPTIONS
         
 def goRight():
     print('You head forward and hike for 1 hour. The mist dissapates and you arrive at a large ominous cave')
@@ -74,6 +76,31 @@ def goRight():
     elif(caveChoice.lower() == 'climb'):
         caveClimb()
     elif(caveChoice.lower() == 'keep walking'):
+    
+
+
+
+
+def caveGoIn():
+    print('You enter the cave. It is dark and hard to see anything. Suddenly, a bear is approaching you.')
+    caveGoInChoice = input('Do you try to fight, run, or hide from the bear? ')
+    if(caveGoInChoice.lower() == 'fight'):
+        print('--------------------')
+        print('You try to fight the bear, but is is much stronger then you. You die.')
+    elif(caveGoInChoice.lower() == ' run'):
+        print('--------------------')
+        print('You try to run from the bear, but it is much faster than you')
+    elif(caveGoInChoice.lower()== 'hide'):
+        print('--------------------')
+        print('You hide from the bear and it goes back to sleep. You exit the cave and walk back to the intersection.')
+        pickSide()
+def caveClimb():
+    print('You decide to climb the cave. The cave is very tall and your arms are getting tired.')
+    caveClimbChoice = input('Do you keep climbing the cave(up), or head down(down)? ')
+    if(caveClimbChoice.lower()== 'up'):
+
+    elif(caveClimbChoice.lower()== 'down'):
+
 #def goForward():
 #def end():
-start()
+#start()
