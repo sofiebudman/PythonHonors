@@ -1,4 +1,6 @@
-
+import turtle
+turtle t = turtle.Turtle()
+hasKey = False
 def start():
     #addd something about fastest way to do it
     
@@ -57,12 +59,12 @@ def snakeRun():
         print('You run away from the snake and it almost catches you, but you spring your way deep into the forest.')
         goStraight()
 def snakeSneak():
-    snakeSneakLocation = input('You crawl and the floor to avoid the snake. The snake seems to be unaware of your presence and you have the opportunity to run away. Do you keep heading into the forest(forward), or go back the crossroads(go back)?')
-    if(snakeSneakLocation.lower() == 'go back'):
+    snakeSneakLocation = input('You crawl and the floor to avoid the snake. The snake seems to be unaware of your presence and you have the opportunity to run away. Do you keep heading into the forest(yes/no)?')
+    if(snakeSneakLocation.lower() == 'no'):
         print('--------------------')
         print('You successfully sneak away from the snake and arrive back at the three way crossroad')
         pickSide()
-    elif(snakeSneakLocation.lower() == 'forward'):
+    elif(snakeSneakLocation.lower() == 'yes'):
         print('--------------------')
         print('You successfully sneak away from the snake and continue heading down the path into the unknown.')
         goStraight()
@@ -76,6 +78,7 @@ def goRight():
     elif(caveChoice.lower() == 'climb'):
         caveClimb()
     elif(caveChoice.lower() == 'keep walking'):
+        caveKeepWalking()
     
 
 
@@ -98,9 +101,25 @@ def caveClimb():
     print('You decide to climb the cave. The cave is very tall and your arms are getting tired.')
     caveClimbChoice = input('Do you keep climbing the cave(up), or head down(down)? ')
     if(caveClimbChoice.lower()== 'up'):
+        print('You keep climbing up the cave, and the top seems unreachable. After 10 minutes of climbing your arms tire out, you miss an arm grip and fall.')
 
     elif(caveClimbChoice.lower()== 'down'):
+        print('You arrive back at the bottom of the cave and are presented with three choices again.')
+def caveKeepWalking():
+    shed = input('You begin to walk around the cave and arrive at an old, rusting shed. Do you go in (yes/no)? ')
+    if(shed.lower() == 'yes'):
+        print('You enter the shed and it is dark, you see cobwebs on the wall. It seems that nothing there is usefull, but suddenly on the shelf you see a old, gold key.')
+        grabKey = input('Do you grab the key or leave it(grab/leave it)? ')
+        if(grabKey.lower() == 'grab'):
+            print('You grab the key and place it in your pocket')
+            hasKey == True
+        elif(grabKey.lower() == 'leave it'):
+            print('You leave the key and head back to the cave.')
+            goRight()
+    elif(shed.lower() == 'no'):
+         print('You leave the shed and walk back to the cave')
+
 
 #def goForward():
 #def end():
-#start()
+start()
