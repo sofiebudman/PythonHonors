@@ -1,24 +1,31 @@
 import turtle
+turtle.penup
+#pole
+turtle.goto(0,-100)
+turtle.forward(10)
+turtle.left(90)
+turtle.forward(180)
+turtle.left(90)
+turtle.forward(10)
+turtle.left(90)
+turtle.forward(180)
 
-turtle.forward(10)
-turtle.left(90)
-turtle.forward(130)
-turtle.left(90)
-turtle.forward(10)
-turtle.left(90)
-turtle.forward(130)
 turtle.penup()
 turtle.left(90)
 turtle.forward(10)
 turtle.left(90)
-turtle.forward(85)
+turtle.forward(105)
 turtle.pendown()
+
+#sign shape
 turtle.right(90)
-turtle.forward(60)
+turtle.forward(90)
 turtle.left(90)
-turtle.forward(45)
+turtle.forward(65)
 turtle.left(90)
-turtle.forward(60)
+turtle.forward(90)
+
+#words
 turtle.penup()
 turtle.left(90)
 turtle.forward(10)
