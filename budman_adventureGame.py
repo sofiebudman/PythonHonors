@@ -3,10 +3,16 @@ hasKey = False
 sideChoice = 'none'
 ###FUNCTIONS ----------------------------------------------------------------------
 
-def reset():
+def reset(location):
     global sideChoice
-    sideChoice = 'none'
-    startGame()
+    sideChoice = level
+    if (level == 'none'):
+        
+        startGame()
+def gameOver():
+    #talk abt num choices made
+    print('--------------------')
+    print('You died, restart the program to try again.')
       
 def caveGoIn():
     print('You enter the cave. It is dark and hard to see anything. Suddenly, a bear is approaching you.')
@@ -14,23 +20,26 @@ def caveGoIn():
     if(caveGoInChoice.lower() == 'fight'):
         print('--------------------')
         print('You try to fight the bear, but is is much stronger then you. You die.')
+        gameOver()
         
     elif(caveGoInChoice.lower() == ' run'):
         print('--------------------')
         print('You try to run from the bear, but it is much faster than you. You die')
+        gameOver()
         
     elif(caveGoInChoice.lower()== 'hide'):
         print('--------------------')
         print('You hide from the bear and it goes back to sleep. You exit the cave and walk back to the intersection.')
-        reset()
+        reset('none')
 def caveClimb():
     print('You decide to climb the cave. The cave is very tall and your arms are getting tired.')
     caveClimbChoice = input('Do you keep climbing the cave(up), or head down(down)? ')
     if(caveClimbChoice.lower()== 'up'):
         print('You keep climbing up the cave, and the top seems unreachable. After 10 minutes of climbing your arms tire out, you miss an arm grip and fall.')
+        gameOver()
     elif(caveClimbChoice.lower()== 'down'):
         print('You arrive back at the bottom of the cave and walk back to the sign where you are presented with three choices again.')
-        reset()
+        reset('none')
 def caveKeepWalking():
     shed = input('You begin to walk around the cave and arrive at an old, rusting shed. Do you go in (yes/no)? ')
     if(shed.lower() == 'yes'):
@@ -44,40 +53,38 @@ def caveKeepWalking():
             goRight()
     elif(shed.lower() == 'no'):
          print('You leave the shed and walk back to the cave')
+         reset('right')
 
 def snakeFight():
     snakeFightWeapon = input('You decide to fight the snake. Around you, you see a stick and a rock. Which one do you use to defend yourself? ')
     if(snakeFightWeapon.lower() =='stick'):
         print('--------------------')
         print('After 5 minutes of fighting, your stick snaps and the cobra bites you. You try to run and get help, but the poison quickly kills you and you die.')
-        end()
+        gameOver()
+        
     elif(snakeFightWeapon.lower() == 'rock'):
         print('--------------------')
         print('You manage to defeat the snake with your stick, but are extremely injured and tired. You take a short nap and then head back to the crossroads and try a new path.')
-        sideChoice = ''
-        pickSide()
+        reset('none')
 def snakeRun():
     snakeRunChoice = input('You decide to run away from the snake. Do you keep heading deeper into the forest(forward) or go back to the intersection(go back)? ')
     if(snakeRunChoice.lower == 'go back'):
         print('--------------------')
         print('You run away from the snake and arrive back at the 3-way intersection')
-        sideChoice = ''
-        pickSide()
+        reset('none')
     elif(snakeRunChoice.lower == 'go back'):
         print('--------------------')
         print('You run away from the snake and it almost catches you, but you spring your way deep into the forest.')
-        goStraight()
-def snakeSneak():
+        reset('forward')
     snakeSneakLocation = input('You crawl and the floor to avoid the snake. The snake seems to be unaware of your presence and you have the opportunity to run away. Do you keep heading into the forest(yes/no)?')
     if(snakeSneakLocation.lower() == 'no'):
         print('--------------------')
         print('You successfully sneak away from the snake and arrive back at the three way crossroad')
-        sideChoice = ''
-        pickSide()
+        reset('none')
     elif(snakeSneakLocation.lower() == 'yes'):
         print('--------------------')
         print('You successfully sneak away from the snake and continue heading down the path into the unknown.')
-        goStraight()
+        reset('forward')
 
 def goLeft():
     print('You walk down the left path, There are many vines and roots covering the path.')
@@ -112,13 +119,13 @@ def startGame():
     global sideChoice
     sideChoice = input('There is an old, cracked wooden sign. You try to read where the signs point to, but it is in a different language. Do you go left, right, or forward? ')
 
-startGame()
+
 print('It is a dawn and the sun has just risen. You decide to go on a hike at Pinewood park, an abandoned nature reserve near your house. Will you make it out alive, find the treasure, or die to the mysterious dangers lurking in the park?')
 name = input('Welcome player. Please enter your name: ')
 print(f'Hello {name}. ')
 print('--------------------')
 
-
+startGame()
 
 ###RUNGAME --------------------------------------------------------------------------------------------------------------------------
 while(sideChoice.lower() == 'left'):
@@ -139,6 +146,7 @@ while (sideChoice.lower() == 'forward'):
 
 #RIGHT SIDE + OPTIONS
 #change
+
 
 
 
