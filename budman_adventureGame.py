@@ -7,9 +7,41 @@ isGameOver = False
 ### TURTLE
 import turtle
 turtle.colormode(255)
-turtle.Screen().bgcolor(40,54,24)
+
+
+
+
+def drawInstructions():
+    turtle.penup()
+    turtle.goto(-200,60)
+    turtle.pendown()
+    turtle.write("Welcome to the choose your own adventure game!", font = ('Arial', 15,'normal'))
+    turtle.penup()
+    turtle.right(90)
+    turtle.forward(30)
+    turtle.left(90)
+    turtle.penup()
+    turtle.write("1. Navigate through many different paths of the park and try to collect the treasure" ,font = ('Arial', 12,'normal'))
+    turtle.penup()
+    turtle.right(90)
+    turtle.forward(30)
+    turtle.left(90)
+    turtle.penup()
+    turtle.write("2. The game is best played with the turtle window and terminal window side by side",font = ('Arial', 12,'normal'))
+    turtle.penup()
+    turtle.right(90)
+    turtle.forward(30)
+    turtle.left(90)
+    turtle.penup()
+    turtle.write("3. Enjoy!",font = ('Arial', 12,'normal'))
+    
+
+
 
 def drawPath():
+    turtle.Screen().bgcolor(40,54,24)
+    turtle.goto(0,0)
+    turtle.setheading(0)
     turtle.speed(10)
     
     turtle.fillcolor(234,208,168)
@@ -122,8 +154,6 @@ def gameOver():
     print('--------------------')
     print('You died, restart the program to try again.')
     quit()
-
-def
       
 def caveGoIn():
     print('You enter the cave. It is dark and hard to see anything. Suddenly, a bear is approaching you.')
@@ -227,20 +257,22 @@ def goRight():
     elif(caveChoice.lower() == 'keep walking'):
         caveKeepWalking()
 
-def goForward():
+#def goForward():
+   
     
     
 ### START GAME ----------------------------------------------------------------------------------------------------------------------------
 def startGame():
+    
+    print('You begin heading up the trail. It is spooky, dark, misty, and you can barely see what is in front of you. Suddenly, you arrive at a 3-way fork in the road.')
+
     drawStartScreen()
     
-
-    print('You begin heading up the trail. It is spooky, dark, misty, and you can barely see what is in front of you. Suddenly, you arrive at a 3-way fork in the road.')
     #draw 
     global sideChoice
     sideChoice = input('There is an old, cracked wooden sign. You try to read where the signs point to, but it is in a different language. Do you go left, right, or forward? ')
 
-    
+drawInstructions()   
 print('It is a dawn and the sun has just risen. You decide to go on a hike at Pinewood park, an abandoned nature reserve near your house. Will you make it out alive, find the treasure, or die to the mysterious dangers lurking in the park?')
 name = input('Welcome player. Please enter your name: ')
 print(f'Hello {name}. ')
