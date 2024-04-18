@@ -1,7 +1,47 @@
 import turtle
 turtle.colormode(255)
-turtle.Screen().bgcolor(40,54,24)
 
+
+def alternateColor(length):
+    for i in range (0,length,50):
+        turtle.pencolor(106,153,78)
+        turtle.forward(25)
+        turtle.pencolor(167,201,87)
+        turtle.forward(25)
+
+def drawSnake():
+    turtle.penup()
+    turtle.goto(-150,-90)
+    turtle.width(40)
+    turtle.pendown()
+    alternateColor(300)
+    turtle.left(90)
+    alternateColor(50)
+    turtle.left(90)
+    alternateColor(250)
+    turtle.right(90)
+    alternateColor(50)
+    turtle.right(90)
+    alternateColor(200)
+    turtle.left(90)
+    alternateColor(50)
+    turtle.left(90)
+    alternateColor(100)
+    turtle.penup()
+    turtle.right(90)
+    turtle.forward(60)
+    turtle.left(90)
+    turtle.forward(30)
+    turtle.pendown()
+    turtle.width(5)
+    turtle.pencolor(173,193,120)
+    turtle.fillcolor(173,193,120)
+    turtle.begin_fill()
+    turtle.circle(50)
+    turtle.end_fill()
+
+
+drawSnake()
 def drawPath():
     turtle.speed(10)
     
@@ -104,5 +144,5 @@ def drawSign():
 def drawStartScreen():
     drawPath()
     drawSign()
-drawStartScreen()
+
 

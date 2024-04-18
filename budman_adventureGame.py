@@ -36,8 +36,6 @@ def drawInstructions():
     turtle.write("3. Enjoy!",font = ('Arial', 12,'normal'))
     
 
-
-
 def drawPath():
     turtle.Screen().bgcolor(40,54,24)
     turtle.goto(0,0)
