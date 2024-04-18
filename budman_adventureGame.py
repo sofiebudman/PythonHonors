@@ -7,11 +7,19 @@ isGameOver = False
 ### TURTLE
 import turtle
 turtle.colormode(255)
+turtle.hideturtle()
 
 
 
+def alternateColor(length):
+    for i in range (0,length,50):
+        turtle.pencolor(106,153,78)
+        turtle.forward(25)
+        turtle.pencolor(167,201,87)
+        turtle.forward(25)
 
 def drawInstructions():
+    
     turtle.penup()
     turtle.goto(-200,60)
     turtle.pendown()
@@ -37,6 +45,8 @@ def drawInstructions():
     
 
 def drawPath():
+    
+
     turtle.Screen().bgcolor(40,54,24)
     turtle.goto(0,0)
     turtle.setheading(0)
@@ -134,9 +144,94 @@ def drawSign():
     turtle.left(90)
     turtle.pendown()
     turtle.write('< !`C#^$*/{')
+
+def drawSnake():
+    turtle.clear()
+    turtle.goto(0,0)
+    turtle.setheading(0)
+    turtle.Screen().bgcolor(161,139,95)
+  
+    #SNAKE BODY
+    turtle.penup()
+    turtle.goto(-150,-90)
+    turtle.width(40)
+    turtle.pendown()
+    alternateColor(300)
+    turtle.left(90)
+    alternateColor(50)
+    turtle.left(90)
+    alternateColor(250)
+    turtle.right(90)
+    alternateColor(50)
+    turtle.right(90)
+    alternateColor(200)
+    turtle.left(90)
+    alternateColor(50)
+    turtle.left(90)
+    alternateColor(100)
+    turtle.penup()
+    turtle.right(90)
+    turtle.forward(60)
+    turtle.left(90)
+    turtle.forward(40)
+    turtle.pendown()
+    #SNAKE HEAD
+    turtle.width(1)
+    turtle.pencolor(173,193,120)
+    turtle.fillcolor(173,193,120)
+    turtle.begin_fill()
+    turtle.circle(50)
+    turtle.end_fill()
+    #SNAKE EYES
+    turtle.pencolor(255,255,255)
+    turtle.fillcolor(0,0,0)
+    turtle.width(4)
+    turtle.penup()
+    turtle.left(90)
+    turtle.forward(25)
+    turtle.right(90)
+    turtle.forward(20)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.circle(10)
+    turtle.end_fill()
+    turtle.right(180)
+    turtle.penup()
+    turtle.forward(40)
+    turtle.pendown()
+    turtle.right(180)
+    turtle.begin_fill()
+    turtle.circle(10)
+    turtle.end_fill()
+
+    #TURTLE MOUTH
+    turtle.penup()
+    turtle.left(90)
+    turtle.forward(30)
+    turtle.right(90)
+    turtle.forward(12)
+    turtle.width(1)
+    turtle.pencolor(138,0,63)
+    turtle.fillcolor(186,0,84)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.forward(15)
+    turtle.left(90)
+    turtle.forward(30)
+    turtle.left(150)
+    turtle.forward(15)
+    turtle.right(120)
+    turtle.forward(15)
+    turtle.left(150)
+    turtle.forward(30)
+    turtle.end_fill()
+    
+
 def drawStartScreen():
+    turtle.clear()
     drawPath()
     drawSign()
+
 
 
 ###FUNCTIONS ----------------------------------------------------------------------
@@ -233,7 +328,9 @@ def snakeSneak():
 
 def goLeft():
     print('You walk down the left path, There are many vines and roots covering the path.')
+    drawSnake()
     snakeChoice = input('Suddenly, you see a large vine ahead of, but it is moving, and coming fast towards you. It is a King Cobra around 10 feet tall whose poison could kill you in a matter of minutes. Do you fight, sneak, or run? ')
+    
     if(snakeChoice.lower() == 'fight'):
         print('--------------------')
         snakeFight()
@@ -282,6 +379,7 @@ startGame()
 while(sideChoice.lower() == 'left' and isGameOver ==False):
     print('--------------------')
     goLeft()
+    
    
     
  
