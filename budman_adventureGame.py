@@ -45,7 +45,7 @@ def drawInstructions():
     
 
 def drawPath():
-    
+    turtle.pencolor(255,255,255)
 
     turtle.Screen().bgcolor(40,54,24)
     turtle.goto(0,0)
@@ -323,8 +323,39 @@ def snakeSneak():
         print('--------------------')
         print('You successfully sneak away from the snake and continue heading down the path into the unknown.')
         #global level, levle = forward
+def buildingMailbox():
+    print('You open the mailbox and see a old, yellowing peace of cardstock, on the back it says:')
+    print('Hello traveler, I see you have found my note. /n This park is home to a long lost tresure, a diamond star. /n To claim this star, there is a key hidden somewhere in the park. /n Find the key, claim the star, and look out for the dangers lurking in the park.')
+    # do this in turtle
+    mailBoxChoice = input('Do you leave the mailbox and try another on the the path choices in hopes of finding the key(leave), enter the visitor center(enter), or look at the sign?(sign)')
+    if(mailBoxChoice.lower() == 'leave'):
+        print("You leave the building to look for the key in another one of the park's paths. I wonder, will you have to come back to this center later?")
+        reset()
 
+    elif(mailBoxChoice.lower() == 'enter'):
+        buildingEnter()
+    elif(mailBoxChoice.lower() == 'sign'):
+        buildingSign()
+def buildingEnter():
+    print('You enter the building and see a dark, ominous room.')
+    buildingEnterChoice = input('Do you enter the room(enter), leave an go to the mailbox(mailbox), or leave and go to the sign(sign)? ')
+    if(buildingEnterChoice.lower() == 'enter'):
+        print('At the end of the room you see a vault, it seems that you need a key to open it.')
+        if(hasKey == False):
+            print("You don't have the key. Go try anothe path to find it.")
+            reset()
+        else:
+            print('You use your key to open the vault. Inside their is a diamond star. You grab it and leave the park.')
+            print('Congratulations you won the game!')
+    elif(buildingEnterChoice.lower() == 'mailbox'):
+        buildingMailbox()
+    elif(buildingEnterChoice.lower() == 'sign'):
+        buildingSign()
+    
+def buildingSign():
 
+    
+        
 
 def goLeft():
     print('You walk down the left path, There are many vines and roots covering the path.')
@@ -352,6 +383,15 @@ def goRight():
     elif(caveChoice.lower() == 'keep walking'):
         caveKeepWalking()
 
+def goStraight():
+    print('You walk straight an arrive at an old building, it seems to be the old visitor center at the park. ')
+    buildingChoice = input('In front of the building there is a sign and a mailbox. Do you enter the building(enter), read the sign(read), or open the mailbox(mailbox).  ')
+    if(buildingChoice.lower()== 'enter'):
+        buildingEnter()
+    elif(buildingChoice.lower() == 'sign'):
+        buildingSign()
+    elif(buildingChoice.lower() =='mailbox'):
+        buildingMailbox()
 #def goForward():
    
     
@@ -389,7 +429,7 @@ while(sideChoice.lower() == 'right' and isGameOver ==False):
         
 while (sideChoice.lower() == 'forward' and isGameOver ==False):
     print('--------------------')
-    goForward()
+    goStraight()
 
 
        
