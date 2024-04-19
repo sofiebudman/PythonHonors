@@ -1,6 +1,97 @@
 import turtle
 turtle.colormode(255)
 #turtle.Screen().bgcolor(40,54,24)
+def drawWindow():
+    turtle.width(6)
+    turtle.fillcolor(255,255,255)
+    turtle.pencolor(130,86,43)
+    turtle.begin_fill()
+    turtle.forward(80)
+    turtle.left(90)
+    turtle.forward(80)
+    turtle.left(90)
+    turtle.forward(80)
+    turtle.left(90)
+    turtle.forward(80)
+    turtle.left(90)
+    turtle.end_fill()
+   
+    turtle.forward(40)
+    turtle.left(90)
+    turtle.forward(80)
+    turtle.penup()
+    turtle.left(90)
+    turtle.forward(40)
+    turtle.left(90)
+    turtle.pendown()
+    turtle.forward(40)
+    turtle.left(90)
+    turtle.forward(80)
+    
+        
+def drawBuilding():
+    turtle.penup()
+    turtle.goto(-230,-300)
+    turtle.fillcolor(130,86,43)
+    turtle.pencolor(130,86,43)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.forward(400)
+    turtle.left(90)
+    turtle.forward(270)
+    turtle.left(90)
+    turtle.forward(400)
+    turtle.left(90)
+    turtle.forward(270)
+    turtle.end_fill()
+    turtle.penup()
+    turtle.goto(-280,-30)
+    turtle.setheading(0)
+    turtle.pencolor(163,28,28)
+    turtle.fillcolor(163,28,28)
+    turtle.width(7)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.forward(500)
+    turtle.left(120)
+    turtle.forward(100)
+    turtle.left(60)
+    turtle.forward(402)
+    turtle.left(60)
+    turtle.forward(100)
+    turtle.end_fill()
+
+    turtle.penup()
+    turtle.goto(-190,-140)
+    turtle.setheading(0)
+    turtle.pendown()
+
+    drawWindow()
+    turtle.penup()
+    turtle.goto(50,-140)
+    turtle.pendown()
+    drawWindow()
+
+    turtle.penup()
+    turtle.goto(-25,-300)
+    turtle.pencolor()
+    turtle.fillcolor()
+    #^TODODOODO
+    
+    turtle.setheading(0)
+    turtle.pendown()
+    turtle.forward(70)
+    turtle.left(90)
+    turtle.forward(120)
+    turtle.left(90)
+    turtle.forward(70)
+    turtle.left(90)
+    turtle.forward(120)
+    
+    
+   
+
+drawBuilding()
 def drawCave():
     turtle.Screen().bgcolor(166,178,179)
     turtle.penup()
@@ -47,8 +138,7 @@ def drawCave():
     turtle.pencolor(19,97,40)
     
     turtle.forward(1000)
-   
-drawCave()
+
 
 def drawPath():
     turtle.speed(10)
