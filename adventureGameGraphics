@@ -1,95 +1,55 @@
 import turtle
 turtle.colormode(255)
-
-
-def alternateColor(length):
-    for i in range (0,length,50):
-        turtle.pencolor(106,153,78)
-        turtle.forward(25)
-        turtle.pencolor(167,201,87)
-        turtle.forward(25)
-
-def drawSnake():
-    turtle.showturtle()
-    #SNAKE BODY
+#turtle.Screen().bgcolor(40,54,24)
+def drawCave():
+    turtle.Screen().bgcolor(166,178,179)
     turtle.penup()
-    turtle.goto(-150,-90)
-    turtle.width(40)
+    turtle.goto(0,-450)
     turtle.pendown()
-    alternateColor(300)
-    turtle.left(90)
-    alternateColor(50)
-    turtle.left(90)
-    alternateColor(250)
-    turtle.right(90)
-    alternateColor(50)
-    turtle.right(90)
-    alternateColor(200)
-    turtle.left(90)
-    alternateColor(50)
-    turtle.left(90)
-    alternateColor(100)
-    turtle.penup()
-    turtle.right(90)
-    turtle.forward(60)
-    turtle.left(90)
-    turtle.forward(40)
-    turtle.pendown()
-    #SNAKE HEAD
-    turtle.width(1)
-    turtle.pencolor(173,193,120)
-    turtle.fillcolor(173,193,120)
+    turtle.pencolor(115,107,91)
+    turtle.fillcolor(115,107,91)
     turtle.begin_fill()
-    turtle.circle(50)
+    turtle.circle(350)
+    turtle.penup()
+    turtle.goto(-333,10)
+    turtle.pendown()
+    turtle.setheading(260)
+    turtle.forward(390)
+    turtle.right(260)
+    turtle.forward(800)
+    turtle.right(260)
+    turtle.forward(280)
+    turtle.left(80)
+    turtle.forward(708)
     turtle.end_fill()
-    #SNAKE EYES
-    turtle.pencolor(255,255,255)
-    turtle.fillcolor(0,0,0)
-    turtle.width(4)
     turtle.penup()
-    turtle.left(90)
-    turtle.forward(25)
-    turtle.right(90)
-    turtle.forward(20)
+    turtle.goto(0,-420)
+    turtle.setheading(0)
     turtle.pendown()
+    turtle.fillcolor(77,72,63)
+    turtle.pencolor(77,72,63)
     turtle.begin_fill()
-    turtle.circle(10)
+    turtle.circle(290)
     turtle.end_fill()
-    turtle.right(180)
-    turtle.penup()
-    turtle.forward(40)
-    turtle.pendown()
-    turtle.right(180)
+    turtle.pencolor(56,53,46)
+    turtle.fillcolor(56,53,46)
     turtle.begin_fill()
-    turtle.circle(10)
-    turtle.end_fill()
-
-    #TURTLE MOUTH
-    turtle.penup()
-    turtle.left(90)
-    turtle.forward(30)
-    turtle.right(90)
-    turtle.forward(12)
-    turtle.width(1)
-    turtle.pencolor(138,0,63)
-    turtle.fillcolor(186,0,84)
-    turtle.pendown()
-    turtle.begin_fill()
-    turtle.forward(15)
-    turtle.left(90)
-    turtle.forward(30)
-    turtle.left(150)
-    turtle.forward(15)
-    turtle.right(120)
-    turtle.forward(15)
-    turtle.left(150)
-    turtle.forward(30)
+    turtle.circle(260)
     turtle.end_fill()
     
+    
 
+    turtle.penup()
+    turtle.goto(-500,-340)
+    turtle.setheading(0)
+    turtle.pensize(120)
+    turtle.pendown()
+    turtle.pencolor(19,97,40)
+    
+    turtle.forward(1000)
+   
+drawCave()
 
-
-drawSnake()
 def drawPath():
     turtle.speed(10)
     
@@ -126,10 +86,6 @@ def drawPath():
     turtle.forward(200)
     turtle.end_fill()
 
-#turtle.right(70)
-#turtle.forward(180)
-#turtle.right(110)
-#turtle.forward(660)
 
 def drawSign():
     
@@ -192,5 +148,3 @@ def drawSign():
 def drawStartScreen():
     drawPath()
     drawSign()
-
-
