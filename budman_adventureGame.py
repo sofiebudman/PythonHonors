@@ -8,6 +8,7 @@ isGameOver = False
 import turtle
 turtle.colormode(255)
 turtle.hideturtle()
+turtle.speed(10)
 
 
 
@@ -19,7 +20,7 @@ def alternateColor(length):
         turtle.forward(25)
 
 def drawInstructions():
-    
+    turtle.speed(10)
     turtle.penup()
     turtle.goto(-200,60)
     turtle.pendown()
@@ -45,6 +46,7 @@ def drawInstructions():
     
 
 def drawPath():
+    turtle.speed(10)
     turtle.pencolor(255,255,255)
 
     turtle.Screen().bgcolor(40,54,24)
@@ -84,10 +86,168 @@ def drawPath():
     turtle.right(60)
     turtle.forward(200)
     turtle.end_fill()
-
-
-def drawSign():
+def drawWindow():
+    turtle.speed(10)
+    turtle.width(6)
+    turtle.fillcolor(255,255,255)
+    turtle.pencolor(130,86,43)
+    turtle.begin_fill()
+    turtle.forward(80)
+    turtle.left(90)
+    turtle.forward(80)
+    turtle.left(90)
+    turtle.forward(80)
+    turtle.left(90)
+    turtle.forward(80)
+    turtle.left(90)
+    turtle.end_fill()
+   
+    turtle.forward(40)
+    turtle.left(90)
+    turtle.forward(80)
+    turtle.penup()
+    turtle.left(90)
+    turtle.forward(40)
+    turtle.left(90)
+    turtle.pendown()
+    turtle.forward(40)
+    turtle.left(90)
+    turtle.forward(80)
     
+        
+    
+        
+def drawBuilding():
+    
+    turtle.clear()
+    turtle.speed(10)
+    turtle.Screen().bgcolor(161,213,237)
+    turtle.penup()
+    turtle.goto(-500,-350)
+    turtle.pencolor(64,107,69)
+    turtle.width(100)
+    turtle.pendown()
+    turtle.forward(1000)
+    turtle.penup()
+    turtle.width(1)
+    turtle.goto(-230,-300)
+    turtle.fillcolor(130,86,43)
+    turtle.pencolor(130,86,43)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.forward(400)
+    turtle.left(90)
+    turtle.forward(270)
+    turtle.left(90)
+    turtle.forward(400)
+    turtle.left(90)
+    turtle.forward(270)
+    turtle.end_fill()
+    turtle.penup()
+    turtle.goto(-280,-30)
+    turtle.setheading(0)
+    turtle.pencolor(163,28,28)
+    turtle.fillcolor(163,28,28)
+    turtle.width(7)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.forward(500)
+    turtle.left(120)
+    turtle.forward(100)
+    turtle.left(60)
+    turtle.forward(402)
+    turtle.left(60)
+    turtle.forward(100)
+    turtle.end_fill()
+
+    turtle.penup()
+    turtle.goto(-190,-140)
+    turtle.setheading(0)
+    turtle.pendown()
+
+    drawWindow()
+    turtle.penup()
+    turtle.goto(50,-140)
+    turtle.pendown()
+    drawWindow()
+
+    turtle.penup()
+    turtle.goto(-65,-298)
+    turtle.pencolor()
+    turtle.fillcolor()
+    #^TODODOODO
+    
+    turtle.setheading(0)
+    turtle.pendown()
+    turtle.forward(70)
+    turtle.begin_fill()
+    turtle.left(90)
+    turtle.forward(120)
+    turtle.left(90)
+    turtle.forward(70)
+    turtle.left(90)
+    turtle.forward(120)
+    turtle.end_fill()
+
+    turtle.penup()
+    turtle.pencolor(231,188,145)
+    turtle.fillcolor(231,188,145)
+    turtle.goto(-320,-300)
+    turtle.setheading(90)
+    turtle.width(10)
+    turtle.pendown()
+    turtle.forward(10)
+    turtle.penup()
+    turtle.goto(-380,-300)
+    turtle.setheading(90)
+    turtle.pendown()
+    turtle.forward(10)
+    turtle.penup()
+    turtle.goto(-390,-287)
+    turtle.setheading(0)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.forward(80)
+    turtle.left(90)
+    turtle.forward(50)
+    turtle.left(90)
+    turtle.forward(80)
+    turtle.left(90)
+    turtle.forward(50)
+    turtle.end_fill()
+    turtle.penup()
+    turtle.goto(260,-300)
+    turtle.setheading(90)
+    turtle.pencolor(138,90,68)
+    turtle.fillcolor(138,90,68)
+    turtle.pendown()
+    turtle.forward(50)
+    turtle.penup()
+    turtle.fillcolor(128,14,19)
+    turtle.pencolor(128,14,19)
+    turtle.width(1)
+    turtle.goto(245,-250)
+    turtle.setheading(0)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.forward(30)
+    turtle.left(90)
+    turtle.forward(30)
+    turtle.left(90)
+    turtle.forward(30)
+    turtle.left(90)
+    turtle.forward(30)
+    turtle.end_fill()
+    turtle.penup()
+    turtle.goto(260,-230)
+    turtle.setheading(0)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.circle(15)
+    turtle.end_fill()
+    
+def drawSign():
+    turtle.speed(10)
     turtle.penup()
     turtle.goto(0,0)
     turtle.setheading(0)
@@ -146,7 +306,9 @@ def drawSign():
     turtle.write('< !`C#^$*/{')
 
 def drawSnake():
+    
     turtle.clear()
+    turtle.speed(10)
     turtle.goto(0,0)
     turtle.setheading(0)
     turtle.Screen().bgcolor(161,139,95)
@@ -225,10 +387,58 @@ def drawSnake():
     turtle.left(150)
     turtle.forward(30)
     turtle.end_fill()
+def drawCave():
+    turtle.clear()
+    turtle.speed(10)
+    turtle.Screen().bgcolor(166,178,179)
+    turtle.penup()
+    turtle.goto(0,-450)
+    turtle.pendown()
+    turtle.pencolor(115,107,91)
+    turtle.fillcolor(115,107,91)
+    turtle.begin_fill()
+    turtle.circle(350)
+    turtle.penup()
+    turtle.goto(-333,10)
+    turtle.pendown()
+    turtle.setheading(260)
+    turtle.forward(390)
+    turtle.right(260)
+    turtle.forward(800)
+    turtle.right(260)
+    turtle.forward(280)
+    turtle.left(80)
+    turtle.forward(708)
+    turtle.end_fill()
+    turtle.penup()
+    turtle.goto(0,-420)
+    turtle.setheading(0)
+    turtle.pendown()
+    turtle.fillcolor(77,72,63)
+    turtle.pencolor(77,72,63)
+    turtle.begin_fill()
+    turtle.circle(290)
+    turtle.end_fill()
+    turtle.pencolor(56,53,46)
+    turtle.fillcolor(56,53,46)
+    turtle.begin_fill()
+    turtle.circle(260)
+    turtle.end_fill()
     
+    
+
+    turtle.penup()
+    turtle.goto(-500,-340)
+    turtle.setheading(0)
+    turtle.pensize(120)
+    turtle.pendown()
+    turtle.pencolor(19,97,40)
+    
+    turtle.forward(1000)
 
 def drawStartScreen():
     turtle.clear()
+    turtle.speed(10)
     drawPath()
     drawSign()
 
@@ -240,6 +450,7 @@ def reset():
     global sideChoice
     sideChoice = 'none'
     startGame()
+    runGame()
 def gameOver():
     global gameOver
     gameOver = True
@@ -329,30 +540,67 @@ def buildingMailbox():
     # do this in turtle
     mailBoxChoice = input('Do you leave the mailbox and try another on the the path choices in hopes of finding the key(leave), enter the visitor center(enter), or look at the sign?(sign)')
     if(mailBoxChoice.lower() == 'leave'):
+        print('--------------------')
         print("You leave the building to look for the key in another one of the park's paths. I wonder, will you have to come back to this center later?")
         reset()
 
     elif(mailBoxChoice.lower() == 'enter'):
+        print('--------------------')
         buildingEnter()
     elif(mailBoxChoice.lower() == 'sign'):
+        print('--------------------')
         buildingSign()
 def buildingEnter():
     print('You enter the building and see a dark, ominous room.')
-    buildingEnterChoice = input('Do you enter the room(enter), leave an go to the mailbox(mailbox), or leave and go to the sign(sign)? ')
+    buildingEnterChoice = input('Do you enter the room(enter), leave and go to the mailbox(mailbox), or leave and go to the sign(sign)? ')
     if(buildingEnterChoice.lower() == 'enter'):
+        print('--------------------')
         print('At the end of the room you see a vault, it seems that you need a key to open it.')
         if(hasKey == False):
-            print("You don't have the key. Go try anothe path to find it.")
+            print("You don't have the key. Go try another path to find it.")
             reset()
         else:
+            
             print('You use your key to open the vault. Inside their is a diamond star. You grab it and leave the park.')
             print('Congratulations you won the game!')
     elif(buildingEnterChoice.lower() == 'mailbox'):
+        print('--------------------')
         buildingMailbox()
     elif(buildingEnterChoice.lower() == 'sign'):
+        print('--------------------')
         buildingSign()
     
 def buildingSign():
+    print('You approach the sign, but it is worn down and in another language.')
+    buildingSignChoice = input('Do you try to use the symbols to understand the signs meaning(decode), look around the sign(look), go to the building(building), or go to the mailbox(mailbox)? ')
+    while(buildingSignChoice.lower() == 'decode'):
+        print('--------------------')
+        print('While trying to understand the meaning of the sign, you see 3 symbols you understand. One looks like a tree, the other looks like a stone, and the last looks like a skull. I wonder what these mean.')
+        buildingSignChoice = input('Do you look around the sign(look), go to the building(building), or go to the mailbox(mailbox).')
+    while(buildingSignChoice.lower() == 'look'):
+        print('--------------------')
+        print('On the back of the sign, you see a etching that you can read. It says that "the key is in a shed near a cave".')
+        lookChoice = input('Do you go to the cave (cave), go to the building(building), or go to the mailbox(mailbox)? ')
+        if(lookChoice.lower() == 'cave'):
+            print('--------------------')
+            goRight()
+        elif(lookChoice.lower() == 'building'):
+            print('--------------------')
+            buildingEnter()
+        elif(lookChoice.lower() == 'mailbox'):
+            print('--------------------')
+            buildingMailBox()
+
+    while(buildingSignChoice.lower() == 'building'):
+        print('--------------------')
+        buildingEnter()
+    while(buildingSignChoice.lower() == 'mailbox'):
+        print('--------------------')
+        buildingMailbox()
+    
+        
+
+    
 
     
         
@@ -375,6 +623,7 @@ def goLeft():
         snakeRun()
 def goRight():
     print('You head forward and hike for 1 hour. The mist dissapates and you arrive at a large ominous cave')
+    drawCave()
     caveChoice = input('Do you go in, climb to see where you are(climb), or keep walking? ')
     if(caveChoice.lower() == 'go in'):
         caveGoIn()
@@ -385,13 +634,34 @@ def goRight():
 
 def goStraight():
     print('You walk straight an arrive at an old building, it seems to be the old visitor center at the park. ')
-    buildingChoice = input('In front of the building there is a sign and a mailbox. Do you enter the building(enter), read the sign(read), or open the mailbox(mailbox).  ')
+    drawBuilding()
+    buildingChoice = input('In front of the building there is a sign and a mailbox. Do you enter the building(enter), read the sign(sign), or open the mailbox(mailbox).  ')
     if(buildingChoice.lower()== 'enter'):
+        print('--------------------')
         buildingEnter()
     elif(buildingChoice.lower() == 'sign'):
+        print('--------------------')
         buildingSign()
     elif(buildingChoice.lower() =='mailbox'):
+        print('--------------------')
         buildingMailbox()
+
+def runGame():
+    while(sideChoice.lower() == 'left' and isGameOver ==False):
+        print('--------------------')
+        goLeft()
+    
+   
+    
+ 
+    while(sideChoice.lower() == 'right' and isGameOver ==False):
+        print('--------------------')
+        goRight()
+        
+    while (sideChoice.lower() == 'forward' and isGameOver ==False):
+        print('--------------------')
+        goStraight()
+
 #def goForward():
    
     
@@ -414,33 +684,13 @@ print(f'Hello {name}. ')
 print('--------------------')
 
 startGame()
+runGame()
 
 ###RUNGAME --------------------------------------------------------------------------------------------------------------------------
-while(sideChoice.lower() == 'left' and isGameOver ==False):
-    print('--------------------')
-    goLeft()
-    
-   
-    
- 
-while(sideChoice.lower() == 'right' and isGameOver ==False):
-    print('--------------------')
-    goRight()
-        
-while (sideChoice.lower() == 'forward' and isGameOver ==False):
-    print('--------------------')
-    goStraight()
 
 
        
 
 #RIGHT SIDE + OPTIONS
 #change
-
-
-
-
-
-
-
 
