@@ -1,6 +1,9 @@
 import turtle
 hasKey = False
-sideChoice = 'none'
+left = False
+right= False
+straight = False
+starting = True
 isGameOver = False
 
 
@@ -10,7 +13,14 @@ turtle.colormode(255)
 turtle.hideturtle()
 turtle.speed(10)
 
-
+def rect(x,y,turn):
+    #90 for right
+    #-90 for left
+    for i in range(2):
+        turtle.forward(x)
+        turtle.right(turn)
+        turtle.forward(y)
+        turtle.right(turn)
 
 def alternateColor(length):
     for i in range (0,length,50):
@@ -20,7 +30,7 @@ def alternateColor(length):
         turtle.forward(25)
 
 def drawInstructions():
-    turtle.speed(10)
+    turtle.speed(0)
     turtle.penup()
     turtle.goto(-200,60)
     turtle.pendown()
@@ -46,11 +56,14 @@ def drawInstructions():
     
 
 def drawPath():
-    turtle.speed(10)
+    turtle.Screen().bgcolor(40,54,24)
+    turtle.penup()
+ 
     turtle.pencolor(255,255,255)
 
-    turtle.Screen().bgcolor(40,54,24)
+    
     turtle.goto(0,0)
+    turtle.pendown()
     turtle.setheading(0)
     turtle.speed(10)
     
@@ -87,21 +100,19 @@ def drawPath():
     turtle.forward(200)
     turtle.end_fill()
 def drawWindow():
-    turtle.speed(10)
+    sides = 0
+    turtle.speed(0)
     turtle.width(6)
     turtle.fillcolor(255,255,255)
     turtle.pencolor(130,86,43)
     turtle.begin_fill()
-    turtle.forward(80)
-    turtle.left(90)
-    turtle.forward(80)
-    turtle.left(90)
-    turtle.forward(80)
-    turtle.left(90)
-    turtle.forward(80)
-    turtle.left(90)
+    
+    while(sides < 4):
+        turtle.forward(80)
+        turtle.left(90)
+        sides +=1
+    
     turtle.end_fill()
-   
     turtle.forward(40)
     turtle.left(90)
     turtle.forward(80)
@@ -113,6 +124,7 @@ def drawWindow():
     turtle.forward(40)
     turtle.left(90)
     turtle.forward(80)
+  
     
         
     
@@ -120,7 +132,7 @@ def drawWindow():
 def drawBuilding():
     
     turtle.clear()
-    turtle.speed(10)
+    turtle.speed(0)
     turtle.Screen().bgcolor(161,213,237)
     turtle.penup()
     turtle.goto(-500,-350)
@@ -135,13 +147,7 @@ def drawBuilding():
     turtle.pencolor(130,86,43)
     turtle.pendown()
     turtle.begin_fill()
-    turtle.forward(400)
-    turtle.left(90)
-    turtle.forward(270)
-    turtle.left(90)
-    turtle.forward(400)
-    turtle.left(90)
-    turtle.forward(270)
+    rect(400,270,-90)
     turtle.end_fill()
     turtle.penup()
     turtle.goto(-280,-30)
@@ -175,7 +181,6 @@ def drawBuilding():
     turtle.goto(-65,-298)
     turtle.pencolor()
     turtle.fillcolor()
-    #^TODODOODO
     
     turtle.setheading(0)
     turtle.pendown()
@@ -207,13 +212,7 @@ def drawBuilding():
     turtle.setheading(0)
     turtle.pendown()
     turtle.begin_fill()
-    turtle.forward(80)
-    turtle.left(90)
-    turtle.forward(50)
-    turtle.left(90)
-    turtle.forward(80)
-    turtle.left(90)
-    turtle.forward(50)
+    rect(80,50,-90)
     turtle.end_fill()
     turtle.penup()
     turtle.goto(260,-300)
@@ -230,13 +229,7 @@ def drawBuilding():
     turtle.setheading(0)
     turtle.pendown()
     turtle.begin_fill()
-    turtle.forward(30)
-    turtle.left(90)
-    turtle.forward(30)
-    turtle.left(90)
-    turtle.forward(30)
-    turtle.left(90)
-    turtle.forward(30)
+    rect(30,30,-90)
     turtle.end_fill()
     turtle.penup()
     turtle.goto(260,-230)
@@ -258,13 +251,7 @@ def drawSign():
 
     turtle.goto(60,-100)
     turtle.begin_fill()
-    turtle.forward(10)
-    turtle.left(90)
-    turtle.forward(180)
-    turtle.left(90)
-    turtle.forward(10)
-    turtle.left(90)
-    turtle.forward(180)
+    rect(10,180,-90)
     turtle.end_fill()
     turtle.penup()
     turtle.left(90)
@@ -389,7 +376,7 @@ def drawSnake():
     turtle.end_fill()
 def drawCave():
     turtle.clear()
-    turtle.speed(10)
+    turtle.speed(0)
     turtle.Screen().bgcolor(166,178,179)
     turtle.penup()
     turtle.goto(0,-450)
@@ -437,18 +424,26 @@ def drawCave():
     turtle.forward(1000)
 
 def drawStartScreen():
+    turtle.width(1)
     turtle.clear()
-    turtle.speed(10)
+    turtle.speed(0)
     drawPath()
     drawSign()
 
 
 
-###FUNCTIONS ----------------------------------------------------------------------
+###GENERAL FUNCTIONS ----------------------------------------------------------------------
 
 def reset():
-    global sideChoice
-    sideChoice = 'none'
+    global starting
+  
+    global left
+    global right
+    global straight
+   
+    left = False
+    right= False
+    straight = True
     startGame()
     runGame()
 def gameOver():
@@ -458,6 +453,7 @@ def gameOver():
     print('--------------------')
     print('You died, restart the program to try again.')
     quit()
+### SUBCHOICE FUNCTIONS ----------------------------------------------------------------------
       
 def caveGoIn():
     print('You enter the cave. It is dark and hard to see anything. Suddenly, a bear is approaching you.')
@@ -474,8 +470,8 @@ def caveGoIn():
         
     elif(caveGoInChoice.lower()== 'hide'):
         print('--------------------')
-        print('You hide from the bear and it goes back to sleep. You exit the cave and walk back to the intersection.')
-        reset()
+        print('You hide from the bear and it goes back to sleep. You exit the cave.')
+        caveKeepWalking()
 def caveClimb():
     print('You decide to climb the cave. The cave is very tall and your arms are getting tired.')
     caveClimbChoice = input('Do you keep climbing the cave(up), or head down(down)? ')
@@ -491,15 +487,26 @@ def caveKeepWalking():
         print('You enter the shed and it is dark, you see cobwebs on the wall. It seems that nothing there is usefull, but suddenly on the shelf you see a old, gold key.')
         grabKey = input('Do you grab the key or leave it(grab/leave it)? ')
         if(grabKey.lower() == 'grab'):
-            print('You grab the key and place it in your pocket')
+            print('You grab the key and place it in your pocket.')
+            global hasKey
             hasKey == True
+            whereToNext = input('Where do you go next? Back to the 3 way sign (start), the cave (cave), or the left path(left)? ')
+            if(whereToNext.lower() == 'start'):
+                reset()
+            elif(whereToNext.lower() == 'cave'):
+                global right
+                right = True
+            elif(whereToNext.lower() == 'left'):
+                global left
+                left = True
         elif(grabKey.lower() == 'leave it'):
             print('You leave the key and head back to the cave.')
-            goRight()
+            global right
+            right = True
     elif(shed.lower() == 'no'):
          print('You leave the shed and walk back to the cave')
-  
-         #gloabl = rigt
+         global right
+         right = True
 
 def snakeFight():
     snakeFightWeapon = input('You decide to fight the snake. Around you, you see a stick and a rock. Which one do you use to defend yourself? ')
@@ -521,7 +528,8 @@ def snakeRun():
     elif(snakeRunChoice.lower == 'go back'):
         print('--------------------')
         print('You run away from the snake and it almost catches you, but you spring your way deep into the forest.')
-        #global lebel = forward
+        global right
+        right = True
 
 def snakeSneak():
     snakeSneakLocation = input('You crawl and the floor to avoid the snake. The snake seems to be unaware of your presence and you have the opportunity to run away. Do you keep heading into the forest(yes/no)?')
@@ -533,7 +541,8 @@ def snakeSneak():
     elif(snakeSneakLocation.lower() == 'yes'):
         print('--------------------')
         print('You successfully sneak away from the snake and continue heading down the path into the unknown.')
-        #global level, levle = forward
+        global right
+        right = True
 def buildingMailbox():
     print('You open the mailbox and see a old, yellowing peace of cardstock, on the back it says:')
     print('Hello traveler, I see you have found my note. /n This park is home to a long lost tresure, a diamond star. /n To claim this star, there is a key hidden somewhere in the park. /n Find the key, claim the star, and look out for the dangers lurking in the park.')
@@ -560,7 +569,6 @@ def buildingEnter():
             print("You don't have the key. Go try another path to find it.")
             reset()
         else:
-            
             print('You use your key to open the vault. Inside their is a diamond star. You grab it and leave the park.')
             print('Congratulations you won the game!')
     elif(buildingEnterChoice.lower() == 'mailbox'):
@@ -597,13 +605,8 @@ def buildingSign():
     while(buildingSignChoice.lower() == 'mailbox'):
         print('--------------------')
         buildingMailbox()
-    
-        
 
-    
-
-    
-        
+### STRUCTURE OF FIRST 3 CHOICE + THEIR OUTCOMES -----------------------------------------------------       
 
 def goLeft():
     print('You walk down the left path, There are many vines and roots covering the path.')
@@ -645,26 +648,18 @@ def goStraight():
     elif(buildingChoice.lower() =='mailbox'):
         print('--------------------')
         buildingMailbox()
-
+### RUN GAME ------------------------------------------------------------------------------------------------------------------
 def runGame():
-    while(sideChoice.lower() == 'left' and isGameOver ==False):
+    while(left == True and isGameOver ==False):
         print('--------------------')
         goLeft()
-    
-   
-    
- 
-    while(sideChoice.lower() == 'right' and isGameOver ==False):
+    while(right ==True and isGameOver ==False):
         print('--------------------')
         goRight()
         
-    while (sideChoice.lower() == 'forward' and isGameOver ==False):
+    while (straight == True and isGameOver ==False):
         print('--------------------')
         goStraight()
-
-#def goForward():
-   
-    
     
 ### START GAME ----------------------------------------------------------------------------------------------------------------------------
 def startGame():
@@ -673,10 +668,17 @@ def startGame():
 
     drawStartScreen()
     
-    #draw 
-    global sideChoice
-    sideChoice = input('There is an old, cracked wooden sign. You try to read where the signs point to, but it is in a different language. Do you go left, right, or forward? ')
-
+    global left
+    global right
+    global straight
+  
+    choice = input('There is an old, cracked wooden sign. You try to read where the signs point to, but it is in a different language. Do you go left, right, or forward? ')
+    if(choice.lower() == 'left'):
+        left = True
+    elif(choice.lower() == 'right'):
+        right = True
+    elif(choice.lower() == 'forward'):
+        straight = True
 drawInstructions()   
 print('It is a dawn and the sun has just risen. You decide to go on a hike at Pinewood park, an abandoned nature reserve near your house. Will you make it out alive, find the treasure, or die to the mysterious dangers lurking in the park?')
 name = input('Welcome player. Please enter your name: ')
@@ -685,12 +687,3 @@ print('--------------------')
 
 startGame()
 runGame()
-
-###RUNGAME --------------------------------------------------------------------------------------------------------------------------
-
-
-       
-
-#RIGHT SIDE + OPTIONS
-#change
-
