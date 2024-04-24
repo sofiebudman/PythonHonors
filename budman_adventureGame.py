@@ -1,7 +1,7 @@
 import turtle
 hasKey = False
 left = False
-right= False
+xxxright= False
 straight = False
 starting = True
 isGameOver = False
@@ -12,6 +12,8 @@ import turtle
 turtle.colormode(255)
 turtle.hideturtle()
 turtle.speed(10)
+
+
 
 def rect(x,y,turn):
     #90 for right
@@ -240,7 +242,7 @@ def drawBuilding():
     turtle.end_fill()
     
 def drawSign():
-    turtle.speed(10)
+    turtle.speed(0)
     turtle.penup()
     turtle.goto(0,0)
     turtle.setheading(0)
@@ -251,7 +253,13 @@ def drawSign():
 
     turtle.goto(60,-100)
     turtle.begin_fill()
-    rect(10,180,-90)
+    turtle.forward(10)
+    turtle.left(90)
+    turtle.forward(180)
+    turtle.left(90)
+    turtle.forward(10)
+    turtle.left(90)
+    turtle.forward(180)
     turtle.end_fill()
     turtle.penup()
     turtle.left(90)
@@ -284,7 +292,7 @@ def drawSign():
     turtle.forward(20)
     turtle.left(90)
     turtle.pendown()
-    turtle.write('> ,O.\|**(-')
+    turtle.write('> ,O./|**(-')
     turtle.penup()
     turtle.right(90)
     turtle.forward(20)
@@ -473,39 +481,51 @@ def caveGoIn():
         print('You hide from the bear and it goes back to sleep. You exit the cave.')
         caveKeepWalking()
 def caveClimb():
+    print('--------------------')
     print('You decide to climb the cave. The cave is very tall and your arms are getting tired.')
     caveClimbChoice = input('Do you keep climbing the cave(up), or head down(down)? ')
     if(caveClimbChoice.lower()== 'up'):
+        print('--------------------')
         print('You keep climbing up the cave, and the top seems unreachable. After 10 minutes of climbing your arms tire out, you miss an arm grip and fall.')
         gameOver()
     elif(caveClimbChoice.lower()== 'down'):
+        print('--------------------')
         print('You arrive back at the bottom of the cave and walk back to the sign where you are presented with three choices again.')
+        print('--------------------')
         reset()
 def caveKeepWalking():
+    global right
+    print('--------------------')
     shed = input('You begin to walk around the cave and arrive at an old, rusting shed. Do you go in (yes/no)? ')
     if(shed.lower() == 'yes'):
+        print('--------------------')
         print('You enter the shed and it is dark, you see cobwebs on the wall. It seems that nothing there is usefull, but suddenly on the shelf you see a old, gold key.')
         grabKey = input('Do you grab the key or leave it(grab/leave it)? ')
         if(grabKey.lower() == 'grab'):
+            print('--------------------')
             print('You grab the key and place it in your pocket.')
             global hasKey
             hasKey == True
             whereToNext = input('Where do you go next? Back to the 3 way sign (start), the cave (cave), or the left path(left)? ')
             if(whereToNext.lower() == 'start'):
+                print('--------------------')
                 reset()
             elif(whereToNext.lower() == 'cave'):
-                global right
+              
+              
                 right = True
             elif(whereToNext.lower() == 'left'):
                 global left
                 left = True
         elif(grabKey.lower() == 'leave it'):
+            print('--------------------')
             print('You leave the key and head back to the cave.')
-            global right
+            
             right = True
     elif(shed.lower() == 'no'):
+         print('--------------------')
          print('You leave the shed and walk back to the cave')
-         global right
+     
          right = True
 
 def snakeFight():
@@ -627,12 +647,12 @@ def goLeft():
 def goRight():
     print('You head forward and hike for 1 hour. The mist dissapates and you arrive at a large ominous cave')
     drawCave()
-    caveChoice = input('Do you go in, climb to see where you are(climb), or keep walking? ')
+    caveChoice = input('Do you go in, climb to see where you are(climb), or keep walking(walk)? ')
     if(caveChoice.lower() == 'go in'):
         caveGoIn()
     elif(caveChoice.lower() == 'climb'):
         caveClimb()
-    elif(caveChoice.lower() == 'keep walking'):
+    elif(caveChoice.lower() == 'walk'):
         caveKeepWalking()
 
 def goStraight():

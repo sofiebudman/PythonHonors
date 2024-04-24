@@ -2,6 +2,32 @@ import turtle
 turtle.colormode(255)
 #turtle.Screen().bgcolor(40,54,24)
 turtle.speed(10)
+
+def drawHouseSign():
+    turtle.clear()
+    turtle.speed(0)
+    turtle.penup()
+    turtle.goto(-500,-400)
+    turtle.width(100)
+    turtle.pencolor(64,107,69)
+    turtle.pendown()
+    turtle.forward(1000)
+    turtle.penup()
+    turtle.pencolor(231,188,145)
+    turtle.fillcolor(231,188,145)
+    turtle.width(30)
+    turtle.goto(-300,-300)
+    turtle.pendown()
+    turtle.setheading(90)
+    turtle.forward(30)
+    turtle.penup()
+    turtle.goto(300,-300)
+    turtle.pendown()
+    turtle.setheading(90)
+    turtle.forward(0)
+    input("Hit enter.")
+
+
 def drawWindow():
     turtle.width(6)
     turtle.fillcolor(255,255,255)
@@ -117,6 +143,7 @@ def drawBuilding():
     turtle.setheading(0)
     turtle.pendown()
     turtle.begin_fill()
+
     turtle.forward(80)
     turtle.left(90)
     turtle.forward(50)
@@ -160,7 +187,6 @@ def drawBuilding():
     
 
 
-drawBuilding()
 def drawCave():
     turtle.Screen().bgcolor(166,178,179)
     turtle.penup()
