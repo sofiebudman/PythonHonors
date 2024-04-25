@@ -1,11 +1,11 @@
 import turtle
 hasKey = False
 left = False
-xxxright= False
+right= False
 straight = False
 starting = True
 isGameOver = False
-
+turtle.screensize(1000,800)
 
 ### TURTLE
 import turtle
@@ -383,19 +383,24 @@ def drawSnake():
     turtle.forward(30)
     turtle.end_fill()
 def drawCave():
+
     turtle.clear()
     turtle.speed(0)
     turtle.Screen().bgcolor(166,178,179)
     turtle.penup()
+    turtle.setheading(0)
     turtle.goto(0,-450)
     turtle.pendown()
     turtle.pencolor(115,107,91)
     turtle.fillcolor(115,107,91)
     turtle.begin_fill()
     turtle.circle(350)
+    turtle.end_fill()
     turtle.penup()
+
     turtle.goto(-333,10)
     turtle.pendown()
+    turtle.begin_fill()
     turtle.setheading(260)
     turtle.forward(390)
     turtle.right(260)
@@ -428,7 +433,6 @@ def drawCave():
     turtle.pensize(120)
     turtle.pendown()
     turtle.pencolor(19,97,40)
-    
     turtle.forward(1000)
 
 def drawStartScreen():
@@ -464,14 +468,14 @@ def gameOver():
 ### SUBCHOICE FUNCTIONS ----------------------------------------------------------------------
       
 def caveGoIn():
-    print('You enter the cave. It is dark and hard to see anything. Suddenly, a bear is approaching you.')
+    print('You enter the cave. It is dark and hard to see anything. Suddenly, a bear is coming at you.')
     caveGoInChoice = input('Do you try to fight, run, or hide from the bear? ')
     if(caveGoInChoice.lower() == 'fight'):
         print('--------------------')
         print('You try to fight the bear, but is is much stronger then you. You die.')
         gameOver()
         
-    elif(caveGoInChoice.lower() == ' run'):
+    elif(caveGoInChoice.lower() == 'run'):
         print('--------------------')
         print('You try to run from the bear, but it is much faster than you. You die')
         gameOver()
@@ -505,7 +509,7 @@ def caveKeepWalking():
             print('--------------------')
             print('You grab the key and place it in your pocket.')
             global hasKey
-            hasKey == True
+            hasKey = True
             whereToNext = input('Where do you go next? Back to the 3 way sign (start), the cave (cave), or the left path(left)? ')
             if(whereToNext.lower() == 'start'):
                 print('--------------------')
@@ -514,14 +518,19 @@ def caveKeepWalking():
               
               
                 right = True
+            
             elif(whereToNext.lower() == 'left'):
                 global left
                 left = True
+                right = False
+
+
         elif(grabKey.lower() == 'leave it'):
             print('--------------------')
             print('You leave the key and head back to the cave.')
             
             right = True
+
     elif(shed.lower() == 'no'):
          print('--------------------')
          print('You leave the shed and walk back to the cave')
@@ -538,18 +547,21 @@ def snakeFight():
     elif(snakeFightWeapon.lower() == 'rock'):
         print('--------------------')
         print('You manage to defeat the snake with your stick, but are extremely injured and tired. You take a short nap and then head back to the crossroads and try a new path.')
+        print('--------------------')
         reset()
 def snakeRun():
-    snakeRunChoice = input('You decide to run away from the snake. Do you keep heading deeper into the forest(forward) or go back to the intersection(go back)? ')
-    if(snakeRunChoice.lower == 'go back'):
+    snakeRunChoice = input('You decide to run away from the snake. Do you run at average speed to avoid tiring out (average) or full speed to make sure you escape(full)? ')
+    if(snakeRunChoice.lower == 'average'):
         print('--------------------')
-        print('You run away from the snake and arrive back at the 3-way intersection')
-        reset()
+        print('You run at average speed in hopes of saving energy, but the snake catches up to you.')
+        gameOver()
     elif(snakeRunChoice.lower == 'go back'):
         print('--------------------')
-        print('You run away from the snake and it almost catches you, but you spring your way deep into the forest.')
+        print('You run away from the snake at full speed and it almost catches you, but you escape into the forest.')
         global right
         right = True
+        global left
+        Left = False
 
 def snakeSneak():
     snakeSneakLocation = input('You crawl and the floor to avoid the snake. The snake seems to be unaware of your presence and you have the opportunity to run away. Do you keep heading into the forest(yes/no)?')
@@ -563,11 +575,13 @@ def snakeSneak():
         print('You successfully sneak away from the snake and continue heading down the path into the unknown.')
         global right
         right = True
+        global left
+        left = False
 def buildingMailbox():
     print('You open the mailbox and see a old, yellowing peace of cardstock, on the back it says:')
-    print('Hello traveler, I see you have found my note. /n This park is home to a long lost tresure, a diamond star. /n To claim this star, there is a key hidden somewhere in the park. /n Find the key, claim the star, and look out for the dangers lurking in the park.')
+    print('~~~~~~~~~~~~~~~~~~\n Hello traveler, I see you have found my note.\n This park is home to a long lost tresure, a diamond star.\n To claim this star, there is a key hidden in the park.\n Find the key, claim the star, and look out for the dangers lurking in the park.\n~~~~~~~~~~~~~~~~~~')
     # do this in turtle
-    mailBoxChoice = input('Do you leave the mailbox and try another on the the path choices in hopes of finding the key(leave), enter the visitor center(enter), or look at the sign?(sign)')
+    mailBoxChoice = input('Do you leave the mailbox and try another on the the path choices in hopes of finding the key(leave), enter the visitor center(enter), or look at the sign?(sign)? ')
     if(mailBoxChoice.lower() == 'leave'):
         print('--------------------')
         print("You leave the building to look for the key in another one of the park's paths. I wonder, will you have to come back to this center later?")
@@ -591,6 +605,8 @@ def buildingEnter():
         else:
             print('You use your key to open the vault. Inside their is a diamond star. You grab it and leave the park.')
             print('Congratulations you won the game!')
+            global isGameOver
+            isGameOver = True
     elif(buildingEnterChoice.lower() == 'mailbox'):
         print('--------------------')
         buildingMailbox()
@@ -617,7 +633,7 @@ def buildingSign():
             buildingEnter()
         elif(lookChoice.lower() == 'mailbox'):
             print('--------------------')
-            buildingMailBox()
+            buildingMailbox()
 
     while(buildingSignChoice.lower() == 'building'):
         print('--------------------')
@@ -645,9 +661,9 @@ def goLeft():
         print('--------------------')
         snakeRun()
 def goRight():
-    print('You head forward and hike for 1 hour. The mist dissapates and you arrive at a large ominous cave')
+    print('After hiking you arrive at a large, ominous cave')
     drawCave()
-    caveChoice = input('Do you go in, climb to see where you are(climb), or keep walking(walk)? ')
+    caveChoice = input('Do you go in(go in), climb to see where you are(climb), or keep walking(walk)? ')
     if(caveChoice.lower() == 'go in'):
         caveGoIn()
     elif(caveChoice.lower() == 'climb'):
@@ -670,14 +686,14 @@ def goStraight():
         buildingMailbox()
 ### RUN GAME ------------------------------------------------------------------------------------------------------------------
 def runGame():
-    while(left == True and isGameOver ==False):
+    while(left == True):
         print('--------------------')
         goLeft()
-    while(right ==True and isGameOver ==False):
+    while(right ==True):
         print('--------------------')
         goRight()
         
-    while (straight == True and isGameOver ==False):
+    while (straight == True):
         print('--------------------')
         goStraight()
     
@@ -707,3 +723,5 @@ print('--------------------')
 
 startGame()
 runGame()
+while(isGameOver == False):
+    runGame()
