@@ -1,4 +1,6 @@
+#turtle import
 import turtle
+#flags
 hasKey = False
 left = False
 right= False
@@ -15,23 +17,43 @@ turtle.speed(10)
 
 
 
-def rect(x,y,turn):
-    #90 for right
-    #-90 for left
+def parallellogram(x,y,xturn,yturn):
+    #this function is used to make drawing other turtle object easier. It is similar to the rect function we used in cmucs academy
+    #90 for right turn
+    #-90 for left turn
     for i in range(2):
+        #first use of for loop loop
+        turtle.forward(x)
+        turtle.right(xturn)
+        turtle.forward(y)
+        turtle.right(yturn)
+
+def square(x,turn):
+    sides = 0
+    while (sides < 4):
         turtle.forward(x)
         turtle.right(turn)
-        turtle.forward(y)
-        turtle.right(turn)
+        sides +=1
+
+def circle(radius,fillcolor,pencolor):
+    turtle.fillcolor(fillcolor)
+    turtle.pencolor(pencolor)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.circle(radius)
+    turtle.end_fill()
 
 def alternateColor(length):
+    #used to alternate the color of snake depending on a desired length
     for i in range (0,length,50):
+        #2nd for loop, used to alternate the snake color every 50 pixels
         turtle.pencolor(106,153,78)
         turtle.forward(25)
         turtle.pencolor(167,201,87)
         turtle.forward(25)
 
 def drawInstructions():
+    #this function draws the initial instructions for the game
     turtle.speed(0)
     turtle.penup()
     turtle.goto(-200,60)
@@ -58,17 +80,14 @@ def drawInstructions():
     
 
 def drawPath():
+    #this function draws the three intersecting paths where the player is directed to make the first choice
     turtle.Screen().bgcolor(40,54,24)
     turtle.penup()
- 
     turtle.pencolor(255,255,255)
-
-    
     turtle.goto(0,0)
     turtle.pendown()
     turtle.setheading(0)
     turtle.speed(10)
-    
     turtle.fillcolor(234,208,168)
     turtle.pencolor(47,14,7)
     turtle.begin_fill()
@@ -83,7 +102,6 @@ def drawPath():
     turtle.forward(150)
     turtle.right(60)
     turtle.forward(380)
-
     turtle.left(120)
     turtle.forward(500)
     turtle.right(120)
@@ -100,20 +118,16 @@ def drawPath():
     turtle.forward(700)
     turtle.right(60)
     turtle.forward(200)
-    turtle.end_fill()
+    turtle.end_fill()       
+    
 def drawWindow():
-    sides = 0
+    #this function is used to draw the window of the building
     turtle.speed(0)
     turtle.width(6)
     turtle.fillcolor(255,255,255)
     turtle.pencolor(130,86,43)
     turtle.begin_fill()
-    
-    while(sides < 4):
-        turtle.forward(80)
-        turtle.left(90)
-        sides +=1
-    
+    square(80,80,-90)
     turtle.end_fill()
     turtle.forward(40)
     turtle.left(90)
@@ -125,14 +139,8 @@ def drawWindow():
     turtle.pendown()
     turtle.forward(40)
     turtle.left(90)
-    turtle.forward(80)
-  
-    
-        
-    
-        
+    turtle.forward(80)   
 def drawBuilding():
-    
     turtle.clear()
     turtle.speed(0)
     turtle.Screen().bgcolor(161,213,237)
@@ -149,7 +157,7 @@ def drawBuilding():
     turtle.pencolor(130,86,43)
     turtle.pendown()
     turtle.begin_fill()
-    rect(400,270,-90)
+    parallellogram(400,270,-90,-90)
     turtle.end_fill()
     turtle.penup()
     turtle.goto(-280,-30)
@@ -167,23 +175,19 @@ def drawBuilding():
     turtle.left(60)
     turtle.forward(100)
     turtle.end_fill()
-
     turtle.penup()
     turtle.goto(-190,-140)
     turtle.setheading(0)
     turtle.pendown()
-
     drawWindow()
     turtle.penup()
     turtle.goto(50,-140)
     turtle.pendown()
     drawWindow()
-
     turtle.penup()
     turtle.goto(-65,-298)
     turtle.pencolor()
     turtle.fillcolor()
-    
     turtle.setheading(0)
     turtle.pendown()
     turtle.forward(70)
@@ -195,7 +199,6 @@ def drawBuilding():
     turtle.left(90)
     turtle.forward(120)
     turtle.end_fill()
-
     turtle.penup()
     turtle.pencolor(231,188,145)
     turtle.fillcolor(231,188,145)
@@ -214,7 +217,7 @@ def drawBuilding():
     turtle.setheading(0)
     turtle.pendown()
     turtle.begin_fill()
-    rect(80,50,-90)
+    parallellogram(80,50,-90,-90)
     turtle.end_fill()
     turtle.penup()
     turtle.goto(260,-300)
@@ -231,26 +234,20 @@ def drawBuilding():
     turtle.setheading(0)
     turtle.pendown()
     turtle.begin_fill()
-    rect(30,30,-90)
+    square(30,30,-90)
     turtle.end_fill()
     turtle.penup()
     turtle.goto(260,-230)
     turtle.setheading(0)
-    turtle.pendown()
-    turtle.begin_fill()
-    turtle.circle(15)
-    turtle.end_fill()
+    circle(15,(128,14,19),(128,14,19))
+
     
 def drawSign():
     turtle.speed(0)
     turtle.penup()
     turtle.goto(0,0)
     turtle.setheading(0)
-    
-    #pole
-  
     turtle.fillcolor(169,146,125)
-
     turtle.goto(60,-100)
     turtle.begin_fill()
     turtle.forward(10)
@@ -267,8 +264,6 @@ def drawSign():
     turtle.left(90)
     turtle.forward(105)
     turtle.pendown()
-
-    #sign shape
     turtle.fillcolor(231,188,145)
     turtle.pencolor(47,14,7)
     turtle.begin_fill()
@@ -279,7 +274,6 @@ def drawSign():
     turtle.left(90)
     turtle.forward(90)
     turtle.end_fill()
-    #words
     turtle.penup()
     turtle.left(90)
     turtle.forward(20)
@@ -300,15 +294,12 @@ def drawSign():
     turtle.pendown()
     turtle.write('< !`C#^$*/{')
 
-def drawSnake():
-    
+def drawSnake(): 
     turtle.clear()
     turtle.speed(10)
     turtle.goto(0,0)
     turtle.setheading(0)
     turtle.Screen().bgcolor(161,139,95)
-  
-    #SNAKE BODY
     turtle.penup()
     turtle.goto(-150,-90)
     turtle.width(40)
@@ -334,34 +325,22 @@ def drawSnake():
     turtle.pendown()
     #SNAKE HEAD
     turtle.width(1)
-    turtle.pencolor(173,193,120)
-    turtle.fillcolor(173,193,120)
-    turtle.begin_fill()
-    turtle.circle(50)
-    turtle.end_fill()
+    circle(50,(173,193,120),(173,193,120))
     #SNAKE EYES
-    turtle.pencolor(255,255,255)
-    turtle.fillcolor(0,0,0)
+    
     turtle.width(4)
     turtle.penup()
     turtle.left(90)
     turtle.forward(25)
     turtle.right(90)
     turtle.forward(20)
-    turtle.pendown()
-    turtle.begin_fill()
-    turtle.circle(10)
-    turtle.end_fill()
+    circle(10,(0,0,0),(255,255,255))
     turtle.right(180)
     turtle.penup()
     turtle.forward(40)
-    turtle.pendown()
-    turtle.right(180)
-    turtle.begin_fill()
-    turtle.circle(10)
-    turtle.end_fill()
-
-    #TURTLE MOUTH
+    turtle.setheading(180)
+    circle(10,(0,0,0),(255,255,255))
+    #SNAKE MOUTH
     turtle.penup()
     turtle.left(90)
     turtle.forward(30)
@@ -383,21 +362,14 @@ def drawSnake():
     turtle.forward(30)
     turtle.end_fill()
 def drawCave():
-
     turtle.clear()
     turtle.speed(0)
     turtle.Screen().bgcolor(166,178,179)
     turtle.penup()
     turtle.setheading(0)
     turtle.goto(0,-450)
-    turtle.pendown()
-    turtle.pencolor(115,107,91)
-    turtle.fillcolor(115,107,91)
-    turtle.begin_fill()
-    turtle.circle(350)
-    turtle.end_fill()
+    circle(350,(115,107,91),(115,107,91))
     turtle.penup()
-
     turtle.goto(-333,10)
     turtle.pendown()
     turtle.begin_fill()
@@ -413,20 +385,8 @@ def drawCave():
     turtle.penup()
     turtle.goto(0,-420)
     turtle.setheading(0)
-    turtle.pendown()
-    turtle.fillcolor(77,72,63)
-    turtle.pencolor(77,72,63)
-    turtle.begin_fill()
-    turtle.circle(290)
-    turtle.end_fill()
-    turtle.pencolor(56,53,46)
-    turtle.fillcolor(56,53,46)
-    turtle.begin_fill()
-    turtle.circle(260)
-    turtle.end_fill()
-    
-    
-
+    circle(290,(77,72,63),(77,72,63))
+    circle(260,(56,53,46),(56,53,46))
     turtle.penup()
     turtle.goto(-500,-340)
     turtle.setheading(0)
@@ -441,8 +401,6 @@ def drawStartScreen():
     turtle.speed(0)
     drawPath()
     drawSign()
-
-
 
 ###GENERAL FUNCTIONS ----------------------------------------------------------------------
 
@@ -580,7 +538,6 @@ def snakeSneak():
 def buildingMailbox():
     print('You open the mailbox and see a old, yellowing peace of cardstock, on the back it says:')
     print('~~~~~~~~~~~~~~~~~~\n Hello traveler, I see you have found my note.\n This park is home to a long lost tresure, a diamond star.\n To claim this star, there is a key hidden in the park.\n Find the key, claim the star, and look out for the dangers lurking in the park.\n~~~~~~~~~~~~~~~~~~')
-    # do this in turtle
     mailBoxChoice = input('Do you leave the mailbox and try another on the the path choices in hopes of finding the key(leave), enter the visitor center(enter), or look at the sign?(sign)? ')
     if(mailBoxChoice.lower() == 'leave'):
         print('--------------------')
@@ -642,7 +599,7 @@ def buildingSign():
         print('--------------------')
         buildingMailbox()
 
-### STRUCTURE OF FIRST 3 CHOICE + THEIR OUTCOMES -----------------------------------------------------       
+### STRUCTURE OF FIRST 3 CHOICE  -----------------------------------------------------       
 
 def goLeft():
     print('You walk down the left path, There are many vines and roots covering the path.')
