@@ -461,7 +461,7 @@ def caveKeepWalking():
     shed = input('You begin to walk around the cave and arrive at an old, rusting shed. Do you go in (yes/no)? ')
     if(shed.lower() == 'yes'):
         print('--------------------')
-        print('You enter the shed and it is dark, you see cobwebs on the wall. It seems that nothing there is usefull, but suddenly on the shelf you see a old, gold key.')
+        print('You enter the shed and it is dark, you see cobwebs on the wall. It seems that nothing there is useful, but suddenly on the shelf you see a old, gold key.')
         grabKey = input('Do you grab the key or leave it(grab/leave it)? ')
         if(grabKey.lower() == 'grab'):
             print('--------------------')
@@ -511,17 +511,17 @@ def snakeFight():
         reset()
 def snakeRun():
     snakeRunChoice = input('You decide to run away from the snake. Do you run at average speed to avoid tiring out (average) or full speed to make sure you escape(full)? ')
-    if(snakeRunChoice.lower == 'average'):
+    if(snakeRunChoice.lower() == 'average'):
         print('--------------------')
         print('You run at average speed in hopes of saving energy, but the snake catches up to you.')
         gameOver()
-    elif(snakeRunChoice.lower == 'go back'):
+    elif(snakeRunChoice.lower() == 'full'):
         print('--------------------')
         print('You run away from the snake at full speed and it almost catches you, but you escape into the forest.')
         global right
         right = True
         global left
-        Left = False
+        left = False
 
 def snakeSneak():
     snakeSneakLocation = input('You crawl on the floor to avoid the snake. The snake seems to be unaware of your presence and you have the opportunity to run away. Do you keep heading into the forest(yes/no)?')
@@ -538,9 +538,9 @@ def snakeSneak():
         global left
         left = False
 def buildingMailbox():
-    print('You open the mailbox and see a old, yellowing peace of cardstock, on the back it says:')
-    print('~~~~~~~~~~~~~~~~~~\n Hello traveler, I see you have found my note.\n This park is home to a long lost tresure, a diamond star.\n To claim this star, there is a key hidden in the park.\n Find the key, claim the star, and look out for the dangers lurking in the park.\n~~~~~~~~~~~~~~~~~~')
-    mailBoxChoice = input('Do you leave the mailbox and try another on the the path choices in hopes of finding the key(leave), enter the visitor center(enter), or look at the sign?(sign)? ')
+    print('You open the mailbox and see a old, yellowing piece of paper. On the back it says:')
+    print('~~~~~~~~~~~~~~~~~~\n Hello traveler, I see you have found my note.\n This park is home to a long lost treasure, a diamond star.\n To claim this star, there is a key hidden in the park.\n Find the key, claim the star, and look out for the dangers lurking in the park.\n~~~~~~~~~~~~~~~~~~')
+    mailBoxChoice = input('Do you leave the mailbox and try another another path choice in hopes of finding the key(leave), enter the visitor center(enter), or look at the sign?(sign)? ')
     if(mailBoxChoice.lower() == 'leave'):
         print('--------------------')
         print("You leave the building to look for the key in another one of the park's paths. I wonder, will you have to come back to this center later?")
@@ -553,19 +553,34 @@ def buildingMailbox():
         print('--------------------')
         buildingSign()
 def buildingEnter():
-    print('You enter the building and see a dark, ominous room.')
+    print('You enter the building and see a dark, foreboding room.')
     buildingEnterChoice = input('Do you enter the room(enter), leave and go to the mailbox(mailbox), or leave and go to the sign(sign)? ')
     if(buildingEnterChoice.lower() == 'enter'):
         print('--------------------')
-        print('At the end of the room you see a vault, it seems that you need a key to open it.')
-        if(hasKey == False):
-            print("You don't have the key. Go try another path to find it.")
-            reset()
-        else:
-            print('You use your key to open the vault. Inside their is a diamond star. You grab it and leave the park.')
-            print('Congratulations you won the game!')
-            global isGameOver
-            isGameOver = True
+        print('At the end of the room you see a vault.')
+        roomChoice = input('Do you try to open the vault(yes/no)? ')
+        if(roomChoice.lower() == 'yes'):
+
+            if(hasKey == False):
+                print('--------------------')
+                print("To open the vault you need a key. You don't have the key. Go try another path to find it.")
+                reset()
+            else:
+                print('--------------------')
+                print('You use your key to open the vault. Inside their is a diamond star. You grab it and leave the park.')
+                print('Congratulations you won the game!')
+                global isGameOver
+                isGameOver = True
+        elif(roomChoice.lower() == 'no'):
+            print('--------------------')
+            roomNextChoice = input('You decide not to try opening the box. Where do you go next? The mailbox(mailbox) or sign(sign)? ')
+            if(roomNextChoice.lower() == 'mailbox'):
+                print('--------------------')
+                buildingMailbox()
+            elif(roomNextChoice.lower() == 'sign'):
+                print('--------------------')
+                buildingSign()
+
     elif(buildingEnterChoice.lower() == 'mailbox'):
         print('--------------------')
         buildingMailbox()
@@ -582,7 +597,7 @@ def buildingSign():
         buildingSignChoice = input('Do you look around the sign(look), go to the building(building), or go to the mailbox(mailbox).')
     while(buildingSignChoice.lower() == 'look'):
         print('--------------------')
-        print('On the back of the sign, you see a etching that you can read. It says that "the key is in a shed near a cave".')
+        print('On the back of the sign, you see an etching that you can read. It says that "the key is in a shed near a cave."')
         lookChoice = input('Do you go to the cave (cave), go to the building(building), or go to the mailbox(mailbox)? ')
         if(lookChoice.lower() == 'cave'):
             print('--------------------')
@@ -622,8 +637,11 @@ def goLeft():
             snakeRun()
     else:
         global left
-        print('You have already defeated the snake, try going to another path. ')
-        nextMove = input('Do you go to the middle path (middle), or right path (right)? ')
+        global right
+        turtle.clear()
+        turtle.Screen().bgcolor(161,139,95)
+        print('You have already defeated the snake, try going to another path or continuing into the forest. ')
+        nextMove = input('Do you go to the middle path (middle), continue into the forest(forest), or right path (right)? ')
         if(nextMove.lower() == 'middle'):
             global straight
             straight = True
@@ -633,8 +651,14 @@ def goLeft():
             global right
             right = True
             left = False
+
+        elif(nextMove.lower() == 'middle'):
+            print('You continue walking through the forest for an hour.')
+
+            right = True
+            left = False
 def goRight():
-    print('After hiking you arrive at a large, ominous cave')
+    print('After hiking you arrive at a large, ominous cave.')
     drawCave()
     caveChoice = input('Do you go in(go in), climb to see where you are(climb), or keep walking(walk)? ')
     if(caveChoice.lower() == 'go in'):
@@ -645,7 +669,7 @@ def goRight():
         caveKeepWalking()
 
 def goStraight():
-    print('You walk straight an arrive at an old building, it seems to be the old visitor center at the park. ')
+    print('You walk straight and arrive at an old building. It seems to be the old visitor center at the park. ')
     drawBuilding()
     buildingChoice = input('In front of the building there is a sign and a mailbox. Do you enter the building(enter), read the sign(sign), or open the mailbox(mailbox).  ')
     if(buildingChoice.lower()== 'enter'):
@@ -666,7 +690,7 @@ def runGame():
         print('--------------------')
         goRight()
         
-    while (straight == True):
+    while (straight == True and isGameOver == False):
         print('--------------------')
         goStraight()
     
