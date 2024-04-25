@@ -93,6 +93,7 @@ def drawLoseScreen():
     turtle.pendown()
     turtle.write('You Lose!', font = ('Courier New', 30, 'bold'), align = 'center')
     turtle.penup()
+    
 def drawWinScreen():
     turtle.Screen().bgcolor(0,0,0)
     turtle.pencolor(255,255,255)
@@ -102,6 +103,7 @@ def drawWinScreen():
     turtle.goto(0,200)
     turtle.pendown()
     turtle.write('You Win!', font = ('Courier New', 30, 'bold'), align = 'center')
+
 def drawPath():
     #this function draws the three intersecting paths where the player is directed to make the first choice
     turtle.Screen().bgcolor(40,54,24)
@@ -162,7 +164,8 @@ def drawWindow():
     turtle.pendown()
     turtle.forward(40)
     turtle.left(90)
-    turtle.forward(80)   
+    turtle.forward(80)  
+
 def drawBuilding():
     turtle.clear()
     turtle.speed(0)
@@ -350,7 +353,6 @@ def drawSnake():
     turtle.width(1)
     circle(50,(173,193,120),(173,193,120))
     #SNAKE EYES
-    
     turtle.width(4)
     turtle.penup()
     turtle.left(90)
@@ -384,6 +386,7 @@ def drawSnake():
     turtle.left(150)
     turtle.forward(30)
     turtle.end_fill()
+
 def drawCave():
     turtle.clear()
     turtle.speed(0)
@@ -429,16 +432,15 @@ def drawStartScreen():
 
 def reset():
     global starting
-  
     global left
     global right
     global straight
-   
     left = False
     right= False
     straight = True
     startGame()
     runGame()
+
 def gameOver():
     global gameOver
     gameOver = True
@@ -472,6 +474,7 @@ def caveGoIn():
         print('--------------------')
         print('You hide from the bear and it goes back to sleep. You exit the cave.')
         caveKeepWalking()
+
 def caveClimb():
     print('--------------------')
     print('You decide to climb the cave. The cave is very tall and your arms are getting tired.')
@@ -485,6 +488,7 @@ def caveClimb():
         print('You arrive back at the bottom of the cave and are able to chose a new option.')
         print('--------------------')
         goRight()
+
 def caveKeepWalking():
     global right
     print('--------------------')
@@ -539,6 +543,7 @@ def snakeFight():
         hasKilledSnake = True
         print('--------------------')
         reset()
+
 def snakeRun():
     snakeRunChoice = input('You decide to run away from the snake. Do you run at average speed to avoid tiring out (average) or full speed to make sure you escape(full)? ')
     if(snakeRunChoice.lower() == 'average'):
@@ -567,6 +572,7 @@ def snakeSneak():
         right = True
         global left
         left = False
+
 def buildingMailbox():
     print('You open the mailbox and see a old, yellowing piece of paper. On the back it says:')
     print('~~~~~~~~~~~~~~~~~~\n Hello traveler, I see you have found my note.\n This park is home to a long lost treasure, a diamond star.\n To claim this star, there is a key hidden in the park.\n Find the key, claim the star, and look out for the dangers lurking in the park.\n~~~~~~~~~~~~~~~~~~')
@@ -582,6 +588,7 @@ def buildingMailbox():
     elif(mailBoxChoice.lower() == 'sign'):
         print('--------------------')
         buildingSign()
+
 def buildingEnter():
     print('You enter the building and see a dark, foreboding room.')
     buildingEnterChoice = input('Do you enter the room(enter), leave and go to the mailbox(mailbox), or leave and go to the sign(sign)? ')
@@ -727,9 +734,7 @@ def runGame():
         
     while (straight == True):
         print('--------------------')
-        goStraight()
-
-        
+        goStraight()       
     
 ### START GAME ----------------------------------------------------------------------------------------------------------------------------
 def startGame():
@@ -749,6 +754,7 @@ def startGame():
         right = True
     elif(choice.lower() == 'forward'):
         straight = True
+#starts the game
 drawInstructions()   
 print('It is a dawn and the sun has just risen. You decide to go on a hike at Pinewood Park, an abandoned nature reserve near your house. Will you make it out alive, find the treasure, or die to the mysterious dangers lurking in the park?')
 name = input('Welcome player. Please enter your name: ')
@@ -756,7 +762,7 @@ print(f'Hello {name}. ')
 print('--------------------')
 
 startGame()
-
+#runs the game while user has not won or lost
 while(isGameOver == False):
     runGame()
 
