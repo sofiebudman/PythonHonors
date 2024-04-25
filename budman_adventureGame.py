@@ -8,6 +8,7 @@ straight = False
 starting = True
 isGameOver = False
 hasKilledSnake = False
+
 turtle.screensize(1000,800)
 
 ### TURTLE
@@ -56,29 +57,51 @@ def drawInstructions():
     #this function draws the initial instructions for the game
     turtle.speed(0)
     turtle.penup()
-    turtle.goto(-200,60)
+    turtle.goto(-250,40)
     turtle.pendown()
-    turtle.write("Welcome to the choose your own adventure game!", font = ('Arial', 15,'normal'))
+    turtle.write('The Treasure of Pinewood Park : \n A Chose Your Own Adventure Game', font = ('Courier New', 30, 'bold'))
+    turtle.penup()
+    turtle.goto(-250,0)
+    turtle.pendown()
+    turtle.write("Welcome to this choose your own adventure game!", font = ('Courier New', 15,'normal'))
     turtle.penup()
     turtle.right(90)
     turtle.forward(30)
     turtle.left(90)
     turtle.penup()
-    turtle.write("1. Navigate through many different paths of the park and try to collect the treasure." ,font = ('Arial', 12,'normal'))
+    turtle.write("1. Navigate through many different paths of the park and try to collect the treasure." ,font = ('Courier New', 12,'normal'))
     turtle.penup()
     turtle.right(90)
     turtle.forward(30)
     turtle.left(90)
     turtle.penup()
-    turtle.write("2. The game is best played with the turtle window and terminal window side by side.",font = ('Arial', 12,'normal'))
+    turtle.write("2. The game is best played with the turtle window and terminal window side by side.",font = ('Courier New', 12,'normal'))
     turtle.penup()
     turtle.right(90)
     turtle.forward(30)
     turtle.left(90)
     turtle.penup()
-    turtle.write("3. Enjoy!",font = ('Arial', 12,'normal'))
+    turtle.write("3. Enjoy!",font = ('Courier New', 12,'normal'))
     
-
+def drawLoseScreen():
+    turtle.Screen().bgcolor(0,0,0)
+    turtle.pencolor(255,255,255)
+    turtle.clear()
+    turtle.speed(0)
+    turtle.penup()
+    turtle.goto(0,200)
+    turtle.pendown()
+    turtle.write('You Lose!', font = ('Courier New', 30, 'bold'), align = 'center')
+    turtle.penup()
+def drawWinScreen():
+    turtle.Screen().bgcolor(0,0,0)
+    turtle.pencolor(255,255,255)
+    turtle.clear()
+    turtle.speed(0)
+    turtle.penup()
+    turtle.goto(0,200)
+    turtle.pendown()
+    turtle.write('You Win!', font = ('Courier New', 30, 'bold'), align = 'center')
 def drawPath():
     #this function draws the three intersecting paths where the player is directed to make the first choice
     turtle.Screen().bgcolor(40,54,24)
@@ -419,10 +442,17 @@ def reset():
 def gameOver():
     global gameOver
     gameOver = True
+    global left
+    global right
+    global straight
+    left = False
+    right = False
+    straight = False
     #talk abt num choices made
     print('--------------------')
     print('You died, restart the program to try again.')
-    quit()
+    drawLoseScreen()
+
 ### SUBCHOICE FUNCTIONS ----------------------------------------------------------------------
       
 def caveGoIn():
@@ -569,8 +599,11 @@ def buildingEnter():
                 print('--------------------')
                 print('You use your key to open the vault. Inside their is a diamond star. You grab it and leave the park.')
                 print('Congratulations you won the game!')
-                global isGameOver
-                isGameOver = True
+                drawWinScreen()
+                global win
+               
+                global straight
+                straight = False
         elif(roomChoice.lower() == 'no'):
             print('--------------------')
             roomNextChoice = input('You decide not to try opening the box. Where do you go next? The mailbox(mailbox) or sign(sign)? ')
@@ -662,8 +695,10 @@ def goRight():
     drawCave()
     caveChoice = input('Do you go in(go in), climb to see where you are(climb), or keep walking(walk)? ')
     if(caveChoice.lower() == 'go in'):
+        print('--------------------')
         caveGoIn()
     elif(caveChoice.lower() == 'climb'):
+        print('--------------------')
         caveClimb()
     elif(caveChoice.lower() == 'walk'):
         caveKeepWalking()
@@ -686,13 +721,15 @@ def runGame():
     while(left == True):
         print('--------------------')
         goLeft()
-    while(right ==True):
+    while(right ==True ):
         print('--------------------')
         goRight()
         
-    while (straight == True and isGameOver == False):
+    while (straight == True):
         print('--------------------')
         goStraight()
+
+        
     
 ### START GAME ----------------------------------------------------------------------------------------------------------------------------
 def startGame():
@@ -719,6 +756,9 @@ print(f'Hello {name}. ')
 print('--------------------')
 
 startGame()
-runGame()
+
 while(isGameOver == False):
     runGame()
+
+
+ 
