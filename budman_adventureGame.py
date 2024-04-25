@@ -613,7 +613,7 @@ def buildingEnter():
                 reset()
             else:
                 print('--------------------')
-                print('You use your key to open the vault. Inside their is a diamond star. You grab it and leave the park.')
+                print('You use your key to open the vault. Inside there is a diamond star. You grab it and leave the park.')
                 print('Congratulations you won the game!')
                 global straight
                 straight = False
