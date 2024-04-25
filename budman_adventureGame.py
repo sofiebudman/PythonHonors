@@ -7,6 +7,7 @@ right= False
 straight = False
 starting = True
 isGameOver = False
+hasKilledSnake = False
 turtle.screensize(1000,800)
 
 ### TURTLE
@@ -15,8 +16,7 @@ turtle.colormode(255)
 turtle.hideturtle()
 turtle.speed(10)
 
-
-
+#turtle shape functions to make drawing more convient + reduce lines of the program
 def parallellogram(x,y,xturn,yturn):
     #this function is used to make drawing other turtle object easier. It is similar to the rect function we used in cmucs academy
     #90 for right turn
@@ -64,13 +64,13 @@ def drawInstructions():
     turtle.forward(30)
     turtle.left(90)
     turtle.penup()
-    turtle.write("1. Navigate through many different paths of the park and try to collect the treasure" ,font = ('Arial', 12,'normal'))
+    turtle.write("1. Navigate through many different paths of the park and try to collect the treasure." ,font = ('Arial', 12,'normal'))
     turtle.penup()
     turtle.right(90)
     turtle.forward(30)
     turtle.left(90)
     turtle.penup()
-    turtle.write("2. The game is best played with the turtle window and terminal window side by side",font = ('Arial', 12,'normal'))
+    turtle.write("2. The game is best played with the turtle window and terminal window side by side.",font = ('Arial', 12,'normal'))
     turtle.penup()
     turtle.right(90)
     turtle.forward(30)
@@ -127,7 +127,7 @@ def drawWindow():
     turtle.fillcolor(255,255,255)
     turtle.pencolor(130,86,43)
     turtle.begin_fill()
-    square(80,80,-90)
+    square(80,-90)
     turtle.end_fill()
     turtle.forward(40)
     turtle.left(90)
@@ -234,7 +234,7 @@ def drawBuilding():
     turtle.setheading(0)
     turtle.pendown()
     turtle.begin_fill()
-    square(30,30,-90)
+    square(30,-90)
     turtle.end_fill()
     turtle.penup()
     turtle.goto(260,-230)
@@ -388,9 +388,9 @@ def drawCave():
     circle(290,(77,72,63),(77,72,63))
     circle(260,(56,53,46),(56,53,46))
     turtle.penup()
-    turtle.goto(-500,-340)
+    turtle.goto(-500,-400)
     turtle.setheading(0)
-    turtle.pensize(120)
+    turtle.pensize(240)
     turtle.pendown()
     turtle.pencolor(19,97,40)
     turtle.forward(1000)
@@ -452,9 +452,9 @@ def caveClimb():
         gameOver()
     elif(caveClimbChoice.lower()== 'down'):
         print('--------------------')
-        print('You arrive back at the bottom of the cave and walk back to the sign where you are presented with three choices again.')
+        print('You arrive back at the bottom of the cave and are able to chose a new option.')
         print('--------------------')
-        reset()
+        goRight()
 def caveKeepWalking():
     global right
     print('--------------------')
@@ -491,7 +491,7 @@ def caveKeepWalking():
 
     elif(shed.lower() == 'no'):
          print('--------------------')
-         print('You leave the shed and walk back to the cave')
+         print('You leave the shed and walk back to the cave.')
      
          right = True
 
@@ -505,6 +505,8 @@ def snakeFight():
     elif(snakeFightWeapon.lower() == 'rock'):
         print('--------------------')
         print('You manage to defeat the snake with your stick, but are extremely injured and tired. You take a short nap and then head back to the crossroads and try a new path.')
+        global hasKilledSnake
+        hasKilledSnake = True
         print('--------------------')
         reset()
 def snakeRun():
@@ -522,7 +524,7 @@ def snakeRun():
         Left = False
 
 def snakeSneak():
-    snakeSneakLocation = input('You crawl and the floor to avoid the snake. The snake seems to be unaware of your presence and you have the opportunity to run away. Do you keep heading into the forest(yes/no)?')
+    snakeSneakLocation = input('You crawl on the floor to avoid the snake. The snake seems to be unaware of your presence and you have the opportunity to run away. Do you keep heading into the forest(yes/no)?')
     if(snakeSneakLocation.lower() == 'no'):
         print('--------------------')
         print('You successfully sneak away from the snake and arrive back at the three way crossroad')
@@ -602,21 +604,35 @@ def buildingSign():
 ### STRUCTURE OF FIRST 3 CHOICE  -----------------------------------------------------       
 
 def goLeft():
-    print('You walk down the left path, There are many vines and roots covering the path.')
-    drawSnake()
-    snakeChoice = input('Suddenly, you see a large vine ahead of, but it is moving, and coming fast towards you. It is a King Cobra around 10 feet tall whose poison could kill you in a matter of minutes. Do you fight, sneak, or run? ')
+    print('You walk down the left path. There are many vines and roots covering the path.')
+    if(hasKilledSnake == False):
+        drawSnake()
+        snakeChoice = input('Suddenly, you see a large vine ahead of you, but it is moving, and coming fast towards you. It is a King Cobra, around 10 feet tall whose poison could kill you in a matter of minutes. Do you fight, sneak, or run? ')
     
-    if(snakeChoice.lower() == 'fight'):
-        print('--------------------')
-        snakeFight()
+        if(snakeChoice.lower() == 'fight'):
+            print('--------------------')
+            snakeFight()
        
-    if(snakeChoice.lower() == 'sneak'):
-        print('--------------------')
-        snakeSneak()
+        if(snakeChoice.lower() == 'sneak'):
+            print('--------------------')
+            snakeSneak()
         
-    if(snakeChoice.lower() == 'run'):
-        print('--------------------')
-        snakeRun()
+        if(snakeChoice.lower() == 'run'):
+            print('--------------------')
+            snakeRun()
+    else:
+        global left
+        print('You have already defeated the snake, try going to another path. ')
+        nextMove = input('Do you go to the middle path (middle), or right path (right)? ')
+        if(nextMove.lower() == 'middle'):
+            global straight
+            straight = True
+
+            left = False
+        elif(nextMove.lower() == 'right'):
+            global right
+            right = True
+            left = False
 def goRight():
     print('After hiking you arrive at a large, ominous cave')
     drawCave()
@@ -673,7 +689,7 @@ def startGame():
     elif(choice.lower() == 'forward'):
         straight = True
 drawInstructions()   
-print('It is a dawn and the sun has just risen. You decide to go on a hike at Pinewood park, an abandoned nature reserve near your house. Will you make it out alive, find the treasure, or die to the mysterious dangers lurking in the park?')
+print('It is a dawn and the sun has just risen. You decide to go on a hike at Pinewood Park, an abandoned nature reserve near your house. Will you make it out alive, find the treasure, or die to the mysterious dangers lurking in the park?')
 name = input('Welcome player. Please enter your name: ')
 print(f'Hello {name}. ')
 print('--------------------')
