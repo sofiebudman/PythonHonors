@@ -4,4 +4,4 @@ def falling_distance(time):
     return distance
 for i in range (1,11):
    
-    print(f'|{i:^8}|{ falling_distance(i):^20.0f}|')
+    print(f'|{i:>8}|{ falling_distance(i):>17.0f} ft|')
