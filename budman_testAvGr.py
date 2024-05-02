@@ -9,9 +9,7 @@ def determine_grade(score):
         return 'D'
     else:
         return 'F'
-
 def main():
-    
     test1 = int(input('Enter score 1: '))
     test2 = int(input('Enter score 2: '))
     test3 = int(input('Enter score 3: '))
@@ -22,8 +20,9 @@ def main():
     print('     Numeric Grade     Letter Grade  ')
     print()
     for i in range(5):
-        print(f'score {i+1}: {scores[i]:>10} {determine_grade(scores[i]):^10}')
+        print(f'score {i+1}: {scores[i]:>10} {determine_grade(scores[i]):^20}')
     print()
     print(f'Average Score: {sum(scores)/5:.2f}')
 main()
     
+
