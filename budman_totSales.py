@@ -1,7 +1,11 @@
-sales = [int(input('Enter the sales for Monday: ')),int(input('Enter the sales for Tuesday: ')),int(input('Enter the sales for Wednesday: ')),int(input('Enter the sales for Thursday: ')),int(input('Enter the sales for Friday: ')),int(input('Enter the sales for Saturday: ')),int(input('Enter the sales for Sunday: '))]
-total= 0
-for i in range (len(sales)):
-    total += sales[i]
 
+def calculate(sales):
+    total= 0
+    for i in range (len(sales)):
+        total += sales[i]
+    return total
 
-print(f'The total sales for that week is {total}.')
+def askAndReturn():
+    sales = [float(input('Enter the sales for Monday: ')),float(input('Enter the sales for Tuesday: ')),float(input('Enter the sales for Wednesday: ')),float(input('Enter the sales for Thursday: ')),float(input('Enter the sales for Friday: ')),float(input('Enter the sales for Saturday: ')),float(input('Enter the sales for Sunday: '))]
+    print(f'The total sales for that week is ${calculate(sales):.2f}.')
+askAndReturn()
