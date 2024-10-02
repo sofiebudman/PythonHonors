@@ -1,12 +1,4 @@
-def createList():
-    nums = []
-    stop = False
-   
-    while (stop != 'yes'):
-        num = int(input('Enter a number for the list: '))
-        nums.append(num)
-        stop = input('Do you want to stop (yes to stop, enter to continue)? ')
-    return nums
+
 def calculate(numList,numCompare):
     greater = []
     for i in range(len(numList)):
@@ -14,8 +6,9 @@ def calculate(numList,numCompare):
             greater.append(numList[i])
     return greater
 def askAndReturn():
+    nums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
     n = int(input('Enter the number you would like to compare with: '))
-    print(f'The numbers greater than {n} are {calculate(createList(),n)}.')
+    print(f'The numbers greater than {n} are {calculate(nums,n)}.')
 
 
 askAndReturn()

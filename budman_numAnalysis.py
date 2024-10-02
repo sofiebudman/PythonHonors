@@ -6,7 +6,7 @@ def askAndPrint():
     print(f'The lowest number in the list is {calculate(nums)[0]}.')
     print(f'The highest number in the list is {calculate(nums)[1]}.')
     print(f'The total of the numbers in the list is {calculate(nums)[2]}.')
-    print(f'The averge of the numbers in the list is {calculate(nums)[3]:.2f}.')
+    print(f'The average of the numbers in the list is {calculate(nums)[3]:.2f}.')
 
 def calculate(nums):
     total = 0
