@@ -1,5 +1,4 @@
   ###INSTRUCTIONS:
-##play here: https://academy.cs.cmu.edu/sharing/goldAnt1902 (individual)
 ##Use arrow keys to navigate  your player through the platforms, collect coins and avoid the spikes.
 ##reach the flag to get to th next level
 ## There will be other elements such a bounce pads and moving obstacles that will either assisst or harm your player
