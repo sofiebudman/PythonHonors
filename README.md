@@ -1,4 +1,4 @@
-#Python Honors
+# Python Honors
 Code for my Python Honors class taken sophomore year. 
 
 /adventure_game: final project choose your own adventure game
